@@ -14,9 +14,9 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy # the main title
+title: go00ood # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: 맞춤법 파괴론자 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -95,10 +95,10 @@ theme_mode: # [light | dark]
 # will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-cdn: "https://chirpy-img.netlify.app"
+cdn: ""
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/assets/main/profile.jpg"
+avatar: "/assets/img/main/profile.jpg"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
