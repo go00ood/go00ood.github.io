@@ -25,6 +25,14 @@ description: >- # used by seo meta and the atom feed
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://go00ood.github.io"
 
+copyright:
+  owner: "go00od"
+  year: 2025
+  license:
+    text: "CC BY-NC 4.0"
+    url: "https://creativecommons.org/licenses/by-nc/4.0/"
+
+
 github:
   username: go00ood # change to your GitHub username
 
