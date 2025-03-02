@@ -1,11 +1,12 @@
 ---
 layout: post
 title:  "[zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)"
-date:   2025-02-28 17:10:17 +0900
+description: zotero 기본 설정, Google Drive 연동 + zotfile 대체(attanger), Notion 연동, translators style 변환(논문 인용 양식 변환), 도움이 되는 plugin 추천
+date:   2025-03-02 
 categories: zotero 
+image: https://github.com/user-attachments/assets/1a2825f0-38fb-4641-a09e-0ae04710e9cc
 ---
 
-![조테로７](https://github.com/user-attachments/assets/1a2825f0-38fb-4641-a09e-0ae04710e9cc)
 
 
 
@@ -138,9 +139,13 @@ Edit → Settings → Attanger
 📌 Other Settings
 
 ☑ Shortcut for Attach New File: Ctrl + I
+
 ☑ Shortcut for Match Attachment: Ctrl + M
+
 ☑ Automatically rename added attachments
+
 ☑ Automatically move added attachments
+
 ☐ Automatically delete empty folders after moving
 
 
@@ -155,15 +160,16 @@ Edit → Settings → Attanger
 
 ---
 
-- https://blog.naver.com/cutegirl8856/223456667381
-- https://m.blog.naver.com/550sn/223268847139
+- [https://blog.naver.com/cutegirl8856/223456667381](https://blog.naver.com/cutegirl8856/223456667381)
+- [https://m.blog.naver.com/550sn/223268847139](https://m.blog.naver.com/550sn/223268847139)
   - 설치 관련 글 
   
 ---
 
 📌 주의해야할 점 
 
-https://github.com/dvanoni/notero?tab=readme-ov-file#notion-database-properties
+[https://github.com/dvanoni/notero?tab=readme-ov-file#notion-database-properties
+](https://github.com/dvanoni/notero?tab=readme-ov-file#notion-database-properties)
 
 - 해당 내용에 따라서 알맞게 Property Name과	Property Type을 notion 데이터베이스에 설정해둬야 작동이 된다. 
 
@@ -178,7 +184,7 @@ https://github.com/dvanoni/notero?tab=readme-ov-file#notion-database-properties
 - Google Scholar, Springer, ArXiv 등은 이미 코드가 작성되어 있으나... 한국 학술 사이트들은 잘 작동 안 될 때가 많음 
 
 ### 한국 학술 사이트에 대한 translators
-- https://github.com/go00ood/zotero-translators-kr
+- [https://github.com/go00ood/zotero-translators-kr](https://github.com/go00ood/zotero-translators-kr)
 
 - 여기서 KCI, DBpia, RISS, Scholar, eArticle, KISS와 같은 한국 학술 사이트에 대한 translators 다운 가능 
 
@@ -190,39 +196,39 @@ https://github.com/dvanoni/notero?tab=readme-ov-file#notion-database-properties
 
 
 ### 5.1. 조테로 스타일 검색 
- https://www.zotero.org/styles
+[https://www.zotero.org/styles](https://www.zotero.org/styles)
 
 ### 5.2. 조테로 스타일 만들기 
-https://editor.citationstyles.org/visualEditor/
+[https://editor.citationstyles.org/visualEditor/](https://editor.citationstyles.org/visualEditor/)
 
 - 얘로 만들기를 시도한 적이 있었다
 - 챗지피티로 하면 잘 된다ㅎㅎ... 
 
 ### 5.3. 한국어학 참고문헌 style
-- https://github.com/go00ood/zotero-style-korean
+- [https://github.com/go00ood/zotero-style-korean](https://github.com/go00ood/zotero-style-korean)
 
 
 ## 6. 도움이 되는 plugin 추천
 
 ### 6.1. Translate for Zotero
-https://github.com/windingwind/zotero-pdf-translate#readme
+[https://github.com/windingwind/zotero-pdf-translate#readme](https://github.com/windingwind/zotero-pdf-translate#readme)
 
-![Translate for Zotero](https://velog.velcdn.com/images/go00od/post/5c296864-e12b-4a8e-aa2e-ed2fb952decb/image.png)
+![Translate for Zotero](https://github.com/user-attachments/assets/0b4e1d44-56d6-4ead-86b8-35888300d799)
 - 적당히 잘되므로 매우 행복하게 해줌. 
 - 자동번역 
 
 
 ### 6.2. Better Notes for Zotero
-https://github.com/windingwind/zotero-better-notes#readme
+[https://github.com/windingwind/zotero-better-notes#readme](https://github.com/windingwind/zotero-better-notes#readme)
 
 
 ### 6.3. Actions and Tags for Zotero
-https://github.com/windingwind/zotero-actions-tags#readme
+[https://github.com/windingwind/zotero-actions-tags#readme](https://github.com/windingwind/zotero-actions-tags#readme)
 - 이런 저런 자동화 
 - 안읽은 문서 unread 태그 달아줌 
 
 ### 6.4. Ethereal Style
-https://github.com/muisedestiny/zotero-style#readme
+[https://github.com/muisedestiny/zotero-style#readme](https://github.com/muisedestiny/zotero-style#readme)
 
 - 무슨 기능인지 잘 모르겠는데 많이들 쓰는듯.  
 
