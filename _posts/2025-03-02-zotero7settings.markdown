@@ -4,7 +4,7 @@ title:  "[zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)"
 description: zotero 기본 설정, Google Drive 연동 + zotfile 대체(attanger), Notion 연동, translators style 변환(논문 인용 양식 변환), 도움이 되는 plugin 추천
 date:   2025-03-02 
 categories: zotero 
-image: https://github.com/user-attachments/assets/1a2825f0-38fb-4641-a09e-0ae04710e9cc
+image: https://github.com/user-attachments/assets/e3adfa60-9107-474f-a050-1ba4fcdba06c
 ---
 
 
