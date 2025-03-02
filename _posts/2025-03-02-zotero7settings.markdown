@@ -77,14 +77,16 @@ image: https://github.com/user-attachments/assets/1a2825f0-38fb-4641-a09e-0ae047
 - **저자명(연도), 제목** 형식 (Filename Template에 입력하면 됨)
 
 ```python 
+{% raw %}
 {{ firstCreator suffix="(" }}{{ year suffix="), " }}{{ title truncate="100" }}
-
+{% endraw %}
 ```
 ex) 김민국(2017), ‘에서’ 주어의 통사와 의미.pdf
 
 ---
 ##### File Renaming 관련 문서
 [https://www.zotero.org/support/file_renaming](https://www.zotero.org/support/file_renaming)
+
 
 **주요 변수**
 - 예제를 참고하여 수정하면 된다. 
@@ -162,6 +164,7 @@ Edit → Settings → Attanger
 
 - [https://blog.naver.com/cutegirl8856/223456667381](https://blog.naver.com/cutegirl8856/223456667381)
 - [https://m.blog.naver.com/550sn/223268847139](https://m.blog.naver.com/550sn/223268847139)
+
   - 설치 관련 글 
   
 ---

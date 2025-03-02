@@ -9,97 +9,37 @@
 
 <url>
   <loc>https://go00ood.github.io/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
+  <lastmod>2025-03-02T08:55:03+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://go00ood.github.io/categories/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
+  <lastmod>2025-03-02T08:55:03+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://go00ood.github.io/tags/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
+  <lastmod>2025-03-02T08:55:03+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://go00ood.github.io/archives/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
+  <lastmod>2025-03-02T08:55:03+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://go00ood.github.io/about/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
+  <lastmod>2025-03-02T08:55:03+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://go00ood.github.io/posts/getting-started/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
+  <loc>https://go00ood.github.io/posts/zotero7settings/</loc>
+  <lastmod>2025-03-02T08:55:03+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://go00ood.github.io/posts/text-and-typography/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/posts/welcome-to-jekyll/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/posts/customize-the-favicon/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/posts/write-a-new-post/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/tags/favicon/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/tags/getting-started/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/tags/typography/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/tags/writing/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/categories/blogging/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/categories/demo/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/categories/tutorial/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/categories/jekyll/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://go00ood.github.io/categories/update/</loc>
-  <lastmod>2025-02-28T11:37:28+00:00</lastmod>
+  <loc>https://go00ood.github.io/categories/zotero/</loc>
+  <lastmod>2025-03-02T08:55:03+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
