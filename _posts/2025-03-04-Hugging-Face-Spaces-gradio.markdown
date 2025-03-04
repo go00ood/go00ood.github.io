@@ -1,7 +1,7 @@
 ---
 categories: 프로그래밍 HuggingFace
 date: 2025-03-04
-description: null
+description: Hugging Face Spaces 사용과 gradio 설정방법
 image:
   alt: gradio
   lqip: data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACwBQCdASoyAC0APtFmqlEoJSOioqoxABoJaWnGNToRtgdoAALp6XZqb50/f820scGn00Z7QgAA/vE0pUaiULIXVc+d/LLNkSxz9s4X/k5tyeVaQ1aETnB1hIClyury5/QEVS6Q44pmvHU3mKvyFvFSbH5WkYyV0dyTCAdJ0sqtRhZvP7z5Z9nayTZArmQzKv7tM9cNdL3ZsbsKiOtRYzZF/gCVTDANj7ivYwn/RfRckCJlyRYL87baPfGMoFEM0evSXDbX0AAAAA==
@@ -76,9 +76,9 @@ demo = gr.Interface(
 <br>
 <br>
 # 훌륭한 분들의 설명... 
-https://lifeignite.tistory.com/63
+<https://lifeignite.tistory.com/63>
 
-https://yunwoong.tistory.com/228
+<https://yunwoong.tistory.com/228>
 > 이건 좀 다르긴 하지만... 적당히 이해 된다 
 
 

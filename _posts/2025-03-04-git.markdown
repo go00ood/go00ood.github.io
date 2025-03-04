@@ -1,0 +1,105 @@
+---
+layout: post
+title: '[Github] Git... 관련된 것 / commit 작성법법 / vscode에서 사용 안됨 / GitHub release?...'
+date: 2025-03-04
+categories: 프로그래밍 github
+description: vscode에서 사용 /commit 작성법/ vscode 안됨 
+image:
+  alt: vscode에서 사용
+  path: /assets/img/post/2025-03-04-git.webp
+  lqip: data:image/webp;base64,UklGRkwBAABXRUJQVlA4IEABAABwCACdASoyACoAPtFSoUuoJKMhsrScyQAaCUABYAjwj2WGCYoQgH67DgsaSt4PomR1lVbbwxhDz+nHj6Z5BFRArDa8D7goEmWtFdmgAP7xYw7NpPLCIwvxO9sSLvjruqhpS+fxSrQ8Q8SpLdHiz31XzpM6vwCpwp9osU+ssialyBC0cytSqJ/aaY2PIdzWwcT4dhC2ajqPOpJV9s8a6VLTBxtEP6LWBuijjPU2Q1iL1yJaiU738r0RKvtYo4Uk05uSt36ss+UfMrVpGaDo3EHfUwma+vWpLkdc267X/VnCMr3QvdXleashFjNdJvHmWOyh55kenUaEmTTPqFh1CF3Sc0+vHmw4jZEEaEKrFlCVbMDoqNVhgzbOXhMjg1SwUEb2n9PQxszmhkJTtsj8YDB76x1L3w0iHTzvrwcn4AAAAA==
+---
+
+다루는 내용
+vscode에서 사용 /commit 작성법/ vscode 안됨 
+
+​
+
+​
+
+## vscode에서 사용 
+
+![vscode](/assets/img/post/2025-03-04-git.webp)
+
+1. change에서 나온 것 확인 
+
+2. 따로 commit 달고 싶은 부분(변경사항이든 등등) + 눌러서 stage changes 상태로 만들기... 
+
+3. commint 달기...
+
+4. push 하기... (윗쪽 점 세 개 누르면 될...듯?) 아님 다시 파란색 눌러도 됨 
+
+
+## commit 작성법
+
+타입(위치): 간단한 내용  -- 으로 그냥 제목만 적기로 타협함 
+
+​
+
+일반적으로 사용되는 커밋 메시지 패턴
+
+feat: 새로운 기능 추가
+
+fix: 버그 수정
+
+refactor: 코드 리팩토링(기능 변경 없이 코드 구조만 수정)
+
+style: 코드 포맷팅, 세미콜론 누락 등 포맷 관련 수정 (기능에 영향을 주지 않는 변경)
+
+docs: 문서 추가 또는 수정
+
+test: 테스트 추가 또는 수정
+
+chore: 빌드 프로세스 또는 보조 도구와 관련된 변경 사항
+
+perf: 성능 개선
+
+ci: CI 설정 파일이나 스크립트 수정
+
+​
+
+​
+
+​
+
+## 여러 간...지...나는 가이드들 
+<https://github.com/RomuloOliveira/commit-messages-guide/blob/master/README_ko-KR.md>
+
+<https://velog.io/@ozragwort/Git-%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%8B%9C%EC%A7%80%EB%A5%BC-%EC%9E%98-%EC%9E%91%EC%84%B1%ED%95%B4%EB%B3%B4%EC%9E%90>
+
+<https://velog.io/@cha0129krl/java-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EA%B3%BC-git-%EA%B4%80%EB%A6%AC>
+
+
+## 예제 폭탄인 곳... 
+<https://github.com/naver/billboard.js/commits/master>
+
+
+## vscode 안됨 
+```
+git config user.name (github 이름)
+git config user.email (github 이메일)
+```
+<https://ccambo.gitlab.io/2017/07/09/VSCODE-VSCode%EC%97%90-Git-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/>
+
+```
+Git: Can’t push refs to remote. Run ‘Pull’ first to integrate your changes.
+
+```
+​
+
+해당 오류 뜸 
+
+>아래 코드 입력하고 좀 귀찮은 짓 하기(버전 보고... 뭐..하기..)
+
+```
+git pull origin master
+```
+
+
+## Github Create a new release
+
+<https://mini-min-dev.tistory.com/105>
+
+매우 친절함... 나도 모르게 하다보니까 됐음. ㄱ냥 태그 만드기 - > 릴리즈 엮기 -> 엄.... 내용 쓰기 하면 됨!
+
+​
