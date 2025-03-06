@@ -236,7 +236,7 @@ jekyll-archives:
 plugins:
    - jekyll-last-modified-at
    - jekyll-target-blank
-
+   - jekyll-sitemap
 
 last-modified-at:
 ​    date-format: '%y-%b-%d' 
