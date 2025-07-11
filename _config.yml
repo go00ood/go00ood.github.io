@@ -239,4 +239,4 @@ plugins:
    - jekyll-sitemap
 
 last-modified-at:
-​    date-format: '%y-%b-%d' 
+  date-format: '%y-%b-%d'
