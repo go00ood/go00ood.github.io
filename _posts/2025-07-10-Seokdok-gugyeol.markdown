@@ -2,7 +2,7 @@
 layout: post
 title:  "[구결] 석독구결 기본 정리"
 description: 석독구결 표기법/구결자/조사/어미/통사현상
-date:   2025-07-10 
+date:   2025-07-11 
 categories: 구결
 
 ---
