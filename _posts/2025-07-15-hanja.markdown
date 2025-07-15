@@ -1,0 +1,67 @@
+---
+layout: post
+title:  "한문 구결 독음"
+description: 
+date:   2025-07-15 
+categories: 구결 
+
+---
+
+
+<textarea id="input-text" rows="5" cols="40" placeholder="한자나 구결 포함된 문장을 입력해보세요"></textarea>
+<div id="preview" style="margin-top: 1em; font-size: 1.1em;"></div>
+
+<style>
+#input-text {
+  width: 100%;
+  max-width: 600px;        
+  height: 100px;            
+  padding: 12px;            
+  font-size: 1rem;          
+  font-family: inherit;     
+  background-color: #1f1f1f; 
+  color: #eee;              
+  border: 1px solid #444;   
+  border-radius: 6px;       
+  box-sizing: border-box;
+  resize: vertical;         
+  line-height: 1.4;
+}
+</style>
+
+
+
+<script>
+(async function() {
+  const res = await fetch('/assets/data/hanja_reading.json');
+  const hanjaMap = await res.json();
+
+  const input = document.getElementById('input-text');
+  const preview = document.getElementById('preview');
+
+  input.addEventListener('input', () => {
+    const originalText = input.value;
+
+    // 한자 병기
+    let annotated = originalText.replace(/([\u4E00-\u9FFF]+)/g, hanjas => {
+      const reading = [...hanjas].map(ch => hanjaMap[ch] || '').join('');
+      return reading ? `${hanjas}<small class="hanja">(${reading})</small>` : hanjas;
+    });
+
+    // 구결 병기
+    annotated = annotated.replace(/([\uF600-\uF8FF])/g, (match, ch, offset, fullText) => {
+      const prevChar = fullText[offset - 1];
+      const nextChar = fullText[offset + 1];
+
+      if (/[\uF600-\uF8FF]/.test(prevChar) || /[\uF600-\uF8FF]/.test(nextChar)) {
+        return ch;
+      }
+
+      const reading = hanjaMap[ch];
+      return reading ? `${ch}<small class="gugyeol">[${reading}]</small>` : ch;
+    });
+
+    preview.innerHTML = annotated;
+  });
+})();
+</script>

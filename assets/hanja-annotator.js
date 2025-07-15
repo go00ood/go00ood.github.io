@@ -1,5 +1,5 @@
 (async function annotateHanjaAndGugyeol() {
-  const res = await fetch('/assets/hanja_reading.json');
+  const res = await fetch('/assets/data/hanja_reading.json');
   const hanjaMap = await res.json();
 
   function annotate(node) {

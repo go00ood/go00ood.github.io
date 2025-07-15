@@ -35,6 +35,8 @@ git checkout main
 ```
 
 - 루트 폴더에 `deploy.sh` 생성
+
+
 ```bash
 #!/usr/bin/env bash
 
@@ -63,6 +65,7 @@ echo "✅ 배포 완료: https://go00ood.github.io"
 
 ```
 
+
   - SSH 키 등록 필요함 
 
 ---
@@ -71,6 +74,8 @@ echo "✅ 배포 완료: https://go00ood.github.io"
 
 - 로컬에서 `bundle exec jekyll build` 실행 
 - Git Bash에서 실행
+
+
 ```
 cd /c/programming/go00ood.github.io
 ./deploy.sh
