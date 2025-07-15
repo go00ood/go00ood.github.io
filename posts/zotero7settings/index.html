@@ -1,0 +1,2124 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="ko-KR" >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+  ><!-- Setup Open Graph image -->
+
+  
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="description" content="zotero 기본 설정, Google Drive 연동 + zotfile 대체(attanger), Notion 연동, translators style 변환(논문 인용 양식 변환), 도움이 되는 plugin 추천" />
+<meta property="og:description" content="zotero 기본 설정, Google Drive 연동 + zotfile 대체(attanger), Notion 연동, translators style 변환(논문 인용 양식 변환), 도움이 되는 plugin 추천" />
+<link rel="canonical" href="https://go00ood.github.io/posts/zotero7settings/" />
+<meta property="og:url" content="https://go00ood.github.io/posts/zotero7settings/" />
+<meta property="og:site_name" content="go00ood" />
+<meta property="og:image" content="https://github.com/user-attachments/assets/6387a5db-0868-43ae-8cf5-7803ba78b95d" />
+<meta property="og:image:alt" content="zotero7" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-03-02T00:00:00+09:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://github.com/user-attachments/assets/6387a5db-0868-43ae-8cf5-7803ba78b95d" />
+<meta name="twitter:image:alt" content="zotero7" />
+<meta property="twitter:title" content="[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-04T15:54:39+09:00","datePublished":"2025-03-02T00:00:00+09:00","description":"zotero 기본 설정, Google Drive 연동 + zotfile 대체(attanger), Notion 연동, translators style 변환(논문 인용 양식 변환), 도움이 되는 plugin 추천","headline":"[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)","image":{"lqip":"data:image/webp;base64,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","alt":"zotero7","url":"https://github.com/user-attachments/assets/6387a5db-0868-43ae-8cf5-7803ba78b95d","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://go00ood.github.io/posts/zotero7settings/"},"url":"https://go00ood.github.io/posts/zotero7settings/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <title>[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동) | go00ood
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://realfavicongenerator.net/
+-->
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+
+  <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="go00ood">
+<meta name="application-name" content="go00ood">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+  <!-- Resource Hints -->
+  
+    
+      
+        <link rel="preconnect" href="https://fonts.googleapis.com" >
+      
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" >
+      
+    
+      
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" >
+      
+    
+      
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" >
+      
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" >
+      
+    
+  
+
+  <!-- Bootstrap -->
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+  <!-- Web Font -->
+  <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/NanumBarunGothicYetHangul.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/css/all.min.css">
+
+  <!-- 3rd-party Dependencies -->
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.32.2/dist/tocbot.min.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+    <!-- Image Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
+  
+
+  <!-- Scripts -->
+
+  <script src="/assets/js/dist/theme.min.js"></script>
+
+  <!-- JS selector for site. -->
+
+<!-- commons -->
+
+
+
+<!-- layout specified -->
+
+
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/ko.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js,npm/tocbot@4.32.2/dist/tocbot.min.js"></script>
+
+
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+
+<!-- Pageviews -->
+
+  
+
+  
+
+
+
+  
+
+  <!-- A placeholder to allow defining custom metadata -->
+
+</head>
+
+
+  <body>
+    <!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+    <a href="/" id="avatar" class="rounded-circle"><img src="/assets/img/main/profile.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a>
+
+    <a class="site-title d-block" href="/">go00ood</a>
+    <p class="site-subtitle fst-italic mb-0">맞춤법 파괴론자</p>
+  </header>
+  <!-- .profile-wrapper -->
+
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>홈</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      
+        <li class="nav-item">
+          <a href="/categories/" class="nav-link">
+            <i class="fa-fw fas fa-stream"></i>
+            
+
+            <span>카테고리</span>
+          </a>
+        </li>
+        <!-- .nav-item -->
+      
+        <li class="nav-item">
+          <a href="/tags/" class="nav-link">
+            <i class="fa-fw fas fa-tags"></i>
+            
+
+            <span>태그</span>
+          </a>
+        </li>
+        <!-- .nav-item -->
+      
+        <li class="nav-item">
+          <a href="/archives/" class="nav-link">
+            <i class="fa-fw fas fa-archive"></i>
+            
+
+            <span>아카이브</span>
+          </a>
+        </li>
+        <!-- .nav-item -->
+      
+        <li class="nav-item">
+          <a href="/about/" class="nav-link">
+            <i class="fa-fw fas fa-info-circle"></i>
+            
+
+            <span>정보</span>
+          </a>
+        </li>
+        <!-- .nav-item -->
+      
+    </ul>
+  </nav>
+
+  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+    
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
+        <i class="fas fa-adjust"></i>
+      </button>
+
+      
+        <span class="icon-border"></span>
+      
+    
+
+    
+      
+
+      
+        <a href="https://github.com/go00ood" aria-label="github" target="_blank" rel="noopener noreferrer noopener noreferrer">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+
+      
+    
+      
+
+      
+        <a href="javascript:location.href%20=%20'mailto:'%20+%20['go00od','naver.com'].join('@')" aria-label="email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      
+    
+      
+
+      
+        <a href="/feed.xml" aria-label="rss">
+          <i class="fas fa-rss"></i>
+        </a>
+      
+    
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+<!-- #sidebar -->
+
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        <!-- The Top Bar -->
+
+<header id="topbar-wrapper" aria-label="Top Bar">
+  <div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100">
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+
+      
+        
+          
+            <span>
+              <a href="/">홈</a>
+            </span>
+
+          
+        
+          
+        
+          
+            
+              <span>[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)</span>
+            
+
+          
+        
+      
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      포스트
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search id="search" class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="검색...">
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">취소</button>
+  </div>
+</header>
+
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              <!-- Refactor the HTML structure -->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+  
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+      
+
+      
+
+      <!-- add image placeholder -->
+      
+
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+
+
+
+
+
+
+<article class="px-1" data-toc="true">
+  <header>
+    <h1 data-toc-skip>[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)</h1>
+    
+      <p class="post-desc fw-light mb-4">zotero 기본 설정, Google Drive 연동 + zotfile 대체(attanger), Notion 연동, translators style 변환(논문 인용 양식 변환), 도움이 되는 plugin 추천</p>
+    
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        게시
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time data-ts="1740841200" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom">
+  2025/03/02
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+        <span>
+          업데이트
+          <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time data-ts="1741071279" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom">
+  2025/03/04
+</time>
+
+        </span>
+      
+
+      
+        
+        
+        
+
+        
+
+        <div class="mt-3 mb-3">
+          <a href="https://github.com/user-attachments/assets/6387a5db-0868-43ae-8cf5-7803ba78b95d" class="popup img-link preview-img blur" target="_blank" rel="noopener noreferrer"><img data-src="https://github.com/user-attachments/assets/6387a5db-0868-43ae-8cf5-7803ba78b95d" alt="zotero7" width="1200" height="630" data-lqip="true" src="data:image/webp;base64,JV5qG3JeKScr6s/lHO3j5dXzoH0fuhuoThCCOkLFHRCSKfxRdCDIOD683OAcr7KPNS2ZDxSztfVH8q528fLLedAIehVNUwo7ISQLsNvuISQzuJLTZRSskDcOUA5X2UealsyHinn6+oP5dztI+U83VdAiLCVlFPWCSFdgzmihJDO0FQgzqzgzgJxm2Mjcq4UVMVFla6eSWV07ux93OwoVf4/6zzSkuKy9uPX92czY/YcUQGQUl8SONPRKOft52h1OU8JwyDfXyBtS/8Lsn9CYHNXdgghZEUo6ISQzuNJV5qG3JeKScr6s/lHO3j5dXzoH0fuhuoThCCOkLFHRCSKfxRdCDIOD683OAcr7KPNS2ZDxSztfVH8q528fLLedAIehVNUwo7ISQLsNvuISQzuJLTZRSskDcOUA5X2UealsyHinn6+oP5dztI+U83VdAiLCVlFPWCSFdgzmihJDO0FQgzqzgzgJxm2Mjcq4UVMVFla6eSWV07ux93OwoVf4/6zzSkuKy9uPX92czY/YcUQGQUl8SONPRKOft52h1OU8JwyDfXyBtS/8Lsn9CYHNXdgghZEUo6ISQzuNGQCjom2NTkXMlBMS//Avw2c+mDbeJWqnyD62VUdX+WPuqfkvVvLdUW6VNG8ayQkBP1XbY17ZqsZmq2X/Vpts0UDPGJedJmc+ata6eSWV07ux93OwoVf4/6zzSkuKy9uPX92czY/YcUQGQUl8SONPRKOft52h1OU8JwyDfXyBtS/8Lsn9CYHNXdgghZEUo6ISQzuNGQCjom2NTkXMlBMS//Avw2c+mDbeJWqnyD62VUdX+WPuqfkvVvLdUW6VNG8ayQkBP1XbY17ZqsZmq2X/Vpts0UDPGJedJmc+atlfuPgCUgrh+HeEv/DzEtaugnNe12w05VyqV7+PTAJ/4+whQCcIwRhDMs+VRIUQQQAiR/0sj7kiPJUR2RJH9v75KZ7+O4idjsMIZd3GFT5hzDoG9HeAnXhxgPOJ/ywghNhR0QsiF4ysGZz53f9a30CHrZeNp7V/5CsRf/mXeeG1qqSq/YAqgatqxzuVamKTyHB+1uGQCjom2NTkXMlBMS//Avw2c+mDbeJWqnyD62VUdX+WPuqfkvVvLdUW6VNG8ayQkBP1XbY17ZqsZmq2X/Vpts0UDPGJedJmc+atlfuPgCUgrh+HeEv/DzEtaugnNe12w05VyqV7+PTAJ/4+whQCcIwRhDMs+VRIUQQQAiR/0sj7kiPJUR2RJH9v75KZ7+O4idjsMIZd3GFT5hzDoG9HeAnXhxgPOJ/ywghNhR0QsiF4ysGZz53f9a30CHrZeNp7V/5CsRf/mXeeG1qqSq/YAqgatqxzuVamKTyHB+1ulfuPgCUgrh+HeEv/DzEtaugnNe12w05VyqV7+PTAJ/4+whQCcIwRhDMs+VRIUQQQAiR/0sj7kiPJUR2RJH9v75KZ7+O4idjsMIZd3GFT5hzDoG9HeAnXhxgPOJ/ywghNhR0QsiF4ysGZz53f9a30CHrZeNp7V/5CsRf/mXeeG1qqSq/YAqgatqxzuVamKTyHB+1uZd3GFT5hzDoG9HeAnXhxgPOJ/ywghNhR0QsiF4ysGZz53f9a30CHrZeNp7V/5CsRf/mXeeG1qqSq/YAqgatqxzuVamKTyHB+1uykrols/daqumaYXasZfPTF235rnXS0l58Z46sbvbOA/JyuOu3qXxrmxNyyPXIxGEI8+gvAVL293YcnXPOV8ifGcTc4z34ZUAf7pCxKzWQIh4lSQhYAQQf6o5bqQdC3ozqP5fknmjdfyn+GR++K5UsDtGwIvfWGA8Wj5uSKEbDcUdEJIJ6lKcQdYwX0TnMua8yAAwhBKR9CFsFuwmjVFSEEpe82x3UdT0LIWFZDt4jSnjBfsvpfnwOiQEvbhhKFyKn0usuN6p8SUcmOSrcOUOqsfhdU3e/zmG/bx9XRk2mS853TSlHJjG2E15O6mrH3yrX3jNzqvnA+XqDnn5ridaas85/rB3EbkEyE8fdNtq/ycuuNWUYzkwx9F8NIfhriyh2WhnLefo7XIebb7eB"></a><figcaption class="text-center pt-2 pb-2">zotero7</figcaption>
+</div>
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/go00ood" target="_blank" rel="noopener noreferrer">go00ood</a>
+            
+          </em>
+        </span>
+
+        <div>
+          <!-- pageviews -->
+          
+
+          <!-- read time -->
+          <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="1730 단어">
+  <em>9 분</em>읽는 시간</span>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+    <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
+      <span class="label text-truncate">[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)</span>
+      <button type="button" class="toc-trigger btn me-1">
+        <i class="fa-solid fa-list-ul fa-fw"></i>
+      </button>
+    </div>
+
+    <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
+      <span class="label ps-2 pe-1">바로가기</span>
+      <i class="fa-solid fa-angle-right fa-fw"></i>
+    </button>
+
+    <dialog id="toc-popup" class="p-0">
+      <div class="header d-flex flex-row align-items-center justify-content-between">
+        <div class="label text-truncate py-2 ms-4">[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)</div>
+        <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
+          <i class="fas fa-close"></i>
+        </button>
+      </div>
+      <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
+    </dialog>
+  
+
+  <div class="content">
+    <h2 id="이-글에서-다루는-내용">
+<span class="me-2">이 글에서 다루는 내용</span><a href="#%EC%9D%B4-%EA%B8%80%EC%97%90%EC%84%9C-%EB%8B%A4%EB%A3%A8%EB%8A%94-%EB%82%B4%EC%9A%A9" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<ol>
+  <li>zotero 기본 설정</li>
+  <li>Google Drive 연동 + zotfile 대체(attanger)</li>
+  <li>Notion 연동</li>
+  <li>translators</li>
+  <li>style 변환(논문 인용 양식 변환)</li>
+  <li>도움이 되는 plugin 추천</li>
+</ol>
+
+<h3 id="zotero-사용-계기">
+<span class="me-2">Zotero 사용 계기</span><a href="#zotero-%EC%82%AC%EC%9A%A9-%EA%B3%84%EA%B8%B0" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+
+<ul>
+  <li><strong>노션과 연동 가능</strong></li>
+  <li><strong>파일명 관리+폴더 필요</strong></li>
+  <li><strong>인용관리 및 서지정보 저장 자동화</strong></li>
+  <li><strong>다양한 플러그인 사용 가능</strong></li>
+</ul>
+
+<blockquote>
+  <p>특히 Notion 중독자이기 때문에 Zotero에서 노션과 연동이 가능하다는 것은 나에게 큰 동기가 되었다.</p>
+</blockquote>
+
+<p>++ 초기에는 서지정보 저장이 riss, dbpia 등에서 잘 안되었었는데 이는 나중에 개선을 할 수 있었다.</p>
+
+<hr>
+
+<h3 id="zotero-이용-방식">
+<span class="me-2">Zotero 이용 방식</span><a href="#zotero-%EC%9D%B4%EC%9A%A9-%EB%B0%A9%EC%8B%9D" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<ol>
+  <li>논문 사이트에서 조테로 커넥터 연결</li>
+  <li>조테로에 서지 정보 저장</li>
+  <li>논문 다운로드 이후 파일을 서지 정보에 연결</li>
+  <li>구글 드라이브에 “저자(연도), 제목”으로 자동 저장</li>
+  <li>노션 데이터베이스에 내용 저장</li>
+</ol>
+
+<p>조테로는 2, 4, 5의 작업을 자동화할 수 있다.
+따라서 인간은 구글에서 조테로 커넥터를 클릭하고(서지 정보를 조테로에 입력), 서지정보와 다운받은 파일을 연결해주면 된다.</p>
+
+<h2 id="1-zotero-기본-설정">
+<span class="me-2">1. zotero 기본 설정</span><a href="#1-zotero-%EA%B8%B0%EB%B3%B8-%EC%84%A4%EC%A0%95" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+
+<h3 id="11-다운로드-및-초기설정">
+<span class="me-2">1.1. 다운로드 및 초기설정</span><a href="#11-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-%EB%B0%8F-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+
+<p><a href="https://m.blog.naver.com/charmsb/221631425423" target="_blank" rel="noopener noreferrer">https://m.blog.naver.com/charmsb/221631425423</a></p>
+
+<ul>
+  <li>다운 및 초기 설정에 대한 친절한 글</li>
+</ul>
+
+<p><a href="https://blog.naver.com/shpowd/223599677542" target="_blank" rel="noopener noreferrer">https://blog.naver.com/shpowd/223599677542</a></p>
+
+<ul>
+  <li>조테로 7에 해당하는 설치 방법</li>
+</ul>
+
+<hr>
+
+<p>추가적으로 zotero settings에서 이와 같은 설정으로 사용중이다. (Edit → Settings)
+<a href="https://github.com/user-attachments/assets/6d348239-cc7e-4c48-8f6b-cccd951e982b" class="popup img-link  shimmer" target="_blank" rel="noopener noreferrer"><img src="https://github.com/user-attachments/assets/6d348239-cc7e-4c48-8f6b-cccd951e982b" alt="zotero settings general" loading="lazy"></a></p>
+
+<h3 id="12-edit--settings--general-설정내용">
+<span class="me-2">1.2. Edit → Settings → general 설정내용</span><a href="#12-edit--settings--general-%EC%84%A4%EC%A0%95%EB%82%B4%EC%9A%A9" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+
+<h4 id="file-handling">
+<span class="me-2">File Handling</span><a href="#file-handling" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h4>
+<p>☑ Automatically attach associated PDFs and other files when saving items</p>
+
+<p>☑ Automatically retrieve metadata for PDFs and ebooks</p>
+
+<p>☐ Automatically take snapshots when creating items from web pages</p>
+<blockquote>
+  <p>용량을 줄이기 위해 snapshot은 해제</p>
+</blockquote>
+
+<h4 id="file-renaming">
+<span class="me-2">File Renaming</span><a href="#file-renaming" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h4>
+<ul>
+  <li>파일 이름을 서지정보에 따라 자동으로 바꿀 수 있다.</li>
+  <li>[Customize Filename Format…]를 클릭하여 선호하는 형식으로 바꿀 수 있음</li>
+  <li>
+<strong>저자명(연도), 제목</strong> 형식 (Filename Template에 입력하면 됨)</li>
+</ul>
+
+<div class="language-python highlighter-rouge">
+<div class="code-header">
+        <span data-label-text="Python"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td>
+<td class="rouge-code"><pre>
+<span class="p">{{</span> <span class="n">firstCreator</span> <span class="n">suffix</span><span class="o">=</span><span class="sh">"</span><span class="s">(</span><span class="sh">"</span> <span class="p">}}{{</span> <span class="n">year</span> <span class="n">suffix</span><span class="o">=</span><span class="sh">"</span><span class="s">), </span><span class="sh">"</span> <span class="p">}}{{</span> <span class="n">title</span> <span class="n">truncate</span><span class="o">=</span><span class="sh">"</span><span class="s">100</span><span class="sh">"</span> <span class="p">}}</span>
+
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<p>ex) 김민국(2017), ‘에서’ 주어의 통사와 의미.pdf</p>
+
+<hr>
+<h5 id="file-renaming-관련-문서">
+<span class="me-2">File Renaming 관련 문서</span><a href="#file-renaming-%EA%B4%80%EB%A0%A8-%EB%AC%B8%EC%84%9C" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h5>
+<p><a href="https://www.zotero.org/support/file_renaming" target="_blank" rel="noopener noreferrer">https://www.zotero.org/support/file_renaming</a></p>
+
+<p><strong>주요 변수</strong></p>
+<ul>
+  <li>예제를 참고하여 수정하면 된다.</li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th><strong>변수(Variable)</strong></th>
+      <th><strong>설명(Description)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>authors</strong></td>
+      <td>부모 아이템의 주요 창작자(논문이면 저자, 예술 작품이면 아티스트 등). 편집자나 기타 기여자는 포함되지 않음.</td>
+    </tr>
+    <tr>
+      <td><strong>editors</strong></td>
+      <td>부모 아이템의 편집자 정보.</td>
+    </tr>
+    <tr>
+      <td><strong>creators</strong></td>
+      <td>부모 아이템의 모든 창작자(저자, 편집자 등 모두 포함).</td>
+    </tr>
+    <tr>
+      <td><strong>firstCreator</strong></td>
+      <td>부모 아이템의 대표 저자 또는 편집자(1~2명). Zotero의 “Creator” 열 값과 동일.</td>
+    </tr>
+    <tr>
+      <td><strong>itemType</strong></td>
+      <td>부모 아이템의 유형(예: 책, 논문, 보고서 등). Zotero에서 지원하는 모든 유형 목록은 <a href="https://api.zotero.org/itemTypes" target="_blank" rel="noopener noreferrer">itemTypes</a>에서 확인 가능.</td>
+    </tr>
+    <tr>
+      <td><strong>attachmentTitle</strong></td>
+      <td>첨부 파일(예: PDF, 이미지 등)의 제목.</td>
+    </tr>
+    <tr>
+      <td><strong>year</strong></td>
+      <td>부모 아이템의 날짜 필드에서 추출한 연도.</td>
+    </tr>
+    <tr>
+      <td><strong>Any item field</strong></td>
+      <td>Zotero에서 제공하는 모든 필드를 변수로 사용할 수 있음. 전체 목록은 <a href="https://www.zotero.org/support" target="_blank" rel="noopener noreferrer">Zotero 문서</a>에서 확인 가능.</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h2 id="2-google-drive-연동--attanger">
+<span class="me-2">2. Google Drive 연동 + Attanger</span><a href="#2-google-drive-%EC%97%B0%EB%8F%99--attanger" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<h3 id="21-google-drive-연동">
+<span class="me-2">2.1. Google Drive 연동</span><a href="#21-google-drive-%EC%97%B0%EB%8F%99" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<p><a href="https://zkfqkfkaskfkr.tistory.com/2" target="_blank" rel="noopener noreferrer">https://zkfqkfkaskfkr.tistory.com/2</a>
+<a href="https://blog.naver.com/lazykiss/222679311922" target="_blank" rel="noopener noreferrer">https://blog.naver.com/lazykiss/222679311922</a></p>
+
+<ul>
+  <li>해당 블로그를 참고하면 가능</li>
+  <li>Google Drive이외에도 onedrive도 적용 가능</li>
+</ul>
+
+<h3 id="22-zotfile-대체---attanger">
+<span class="me-2">2.2. ZotFile 대체 - Attanger</span><a href="#22-zotfile-%EB%8C%80%EC%B2%B4---attanger" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<ul>
+  <li>앞선 글에서는 zotfile을 사용하는데 사실 zotero 7에서는 불가능하다.</li>
+  <li>이와 유사한 기능을 하는 <a href="https://github.com/MuiseDestiny/zotero-attanger" target="_blank" rel="noopener noreferrer">attanger</a>을 사용하면 간단하게 해결할 수 있음.</li>
+</ul>
+
+<hr>
+
+<ul>
+  <li>zotfile과 동일하게 attanger도 설치
+    <ul>
+      <li><a href="https://github.com/MuiseDestiny/zotero-attanger" target="_blank" rel="noopener noreferrer">zotero-attanger github</a></li>
+    </ul>
+  </li>
+  <li>원리는 동일하다.
+    <ul>
+      <li>일정한 구글 드라이브 경로를 설정해주면, 그 폴더에 파일명을 바꿔 파일을 저장하는 방식.</li>
+      <li>파일 저장명 등은 수정할 수 있음</li>
+      <li>카테고리별로 subfolder 설정 여부를 선택할 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+<p>Edit → Settings → Attanger
+<a href="https://github.com/user-attachments/assets/ee52fd3b-a421-4af4-8467-8c5510d3c3ec" class="popup img-link  shimmer" target="_blank" rel="noopener noreferrer"><img src="https://github.com/user-attachments/assets/ee52fd3b-a421-4af4-8467-8c5510d3c3ec" alt="Attanger 설정" loading="lazy"></a></p>
+
+<ul>
+  <li>빨간색: 논문을 저장할 드라이브 경로(드라이브에 새로운 폴더를 만들어서 관리하는 것이 편함)</li>
+  <li>주황색: subfolder 및 파일명 관련 설정</li>
+</ul>
+
+<hr>
+
+<p>📌 Other Settings</p>
+
+<p>☑ Shortcut for Attach New File: Ctrl + I</p>
+
+<p>☑ Shortcut for Match Attachment: Ctrl + M</p>
+
+<p>☑ Automatically rename added attachments</p>
+
+<p>☑ Automatically move added attachments</p>
+
+<p>☐ Automatically delete empty folders after moving</p>
+
+<h2 id="3-notion-연동---notero">
+<span class="me-2">3. Notion 연동 - Notero</span><a href="#3-notion-%EC%97%B0%EB%8F%99---notero" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<ul>
+  <li>매우 소중한 플러그인이다.</li>
+  <li>노션 데이터베이스에 자동으로 여러 정보들을 입력해줌.</li>
+  <li>Zotero를 통해 Notion에 입력된 항목(예: 논문, 책 등)에 대해 새로운 내용을 추가하면(즉, 해당 페이지에 메모나 요약 등을 작성하면), 이후 Zotero에서 해당 항목의 서지 정보(제목, 저자, 연도 등)가 수정되더라도 Notion에 추가한 내용은 변경되지 않고 그대로 유지됨.</li>
+  <li>기존 데이터베이스에 조테로를 연결해도 작동됨</li>
+  <li>
+    <p>데이터베이스에 새로운 속성을 추가해도 상관 없음</p>
+  </li>
+  <li><a href="https://github.com/dvanoni/notero" target="_blank" rel="noopener noreferrer">Notero 공식문서</a></li>
+</ul>
+
+<hr>
+
+<ul>
+  <li><a href="https://blog.naver.com/cutegirl8856/223456667381" target="_blank" rel="noopener noreferrer">https://blog.naver.com/cutegirl8856/223456667381</a></li>
+  <li>
+    <p><a href="https://m.blog.naver.com/550sn/223268847139" target="_blank" rel="noopener noreferrer">https://m.blog.naver.com/550sn/223268847139</a></p>
+
+    <ul>
+      <li>설치 관련 글</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<p>📌 주의해야할 점</p>
+
+<p><a href="https://github.com/dvanoni/notero?tab=readme-ov-file#notion-database-properties" target="_blank" rel="noopener noreferrer">https://github.com/dvanoni/notero?tab=readme-ov-file#notion-database-properties
+</a></p>
+
+<ul>
+  <li>해당 내용에 따라서 알맞게 Property Name과	Property Type을 notion 데이터베이스에 설정해둬야 작동이 된다.</li>
+</ul>
+
+<h2 id="4-translators">
+<span class="me-2">4. translators</span><a href="#4-translators" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<ul>
+  <li>조테로의 translators는 웹사이트에서 참고 문헌 정보를 자동으로 가져오기 위한 스크립트를 뜻함.</li>
+  <li>특정 사이트에서 서지정보가 제대로 저장이 안 될 때 보완 가능</li>
+  <li>tools &gt; developer &gt; translator editor 에서 확인 및 수정</li>
+</ul>
+
+<hr>
+<ul>
+  <li>Google Scholar, Springer, ArXiv 등은 이미 코드가 작성되어 있으나… 한국 학술 사이트들은 잘 작동 안 될 때가 많음</li>
+</ul>
+
+<h3 id="한국-학술-사이트에-대한-translators">
+<span class="me-2">한국 학술 사이트에 대한 translators</span><a href="#%ED%95%9C%EA%B5%AD-%ED%95%99%EC%88%A0-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-translators" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<ul>
+  <li>
+    <p><a href="https://github.com/go00ood/zotero-translators-kr" target="_blank" rel="noopener noreferrer">https://github.com/go00ood/zotero-translators-kr</a></p>
+  </li>
+  <li>
+    <p>여기서 KCI, DBpia, RISS, Scholar, eArticle, KISS와 같은 한국 학술 사이트에 대한 translators 다운 가능</p>
+  </li>
+</ul>
+
+<h2 id="5-style-변환논문-인용-양식-변환">
+<span class="me-2">5. style 변환(논문 인용 양식 변환)</span><a href="#5-style-%EB%B3%80%ED%99%98%EB%85%BC%EB%AC%B8-%EC%9D%B8%EC%9A%A9-%EC%96%91%EC%8B%9D-%EB%B3%80%ED%99%98" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<ul>
+  <li>Zotero 스타일(Styles) 은 참고 문헌(References) 및 인용(Citations)을 특정 형식으로 자동 변환해주는 기능</li>
+  <li>Edit → Settings → Cite → Styles에서 확인 가능</li>
+  <li>Edit → Settings → Export → Item Format: 에서 기본적으로 활용할 인용 방식을 설정 가능.</li>
+</ul>
+
+<h3 id="51-조테로-스타일-검색">
+<span class="me-2">5.1. 조테로 스타일 검색</span><a href="#51-%EC%A1%B0%ED%85%8C%EB%A1%9C-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B2%80%EC%83%89" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<p><a href="https://www.zotero.org/styles" target="_blank" rel="noopener noreferrer">https://www.zotero.org/styles</a></p>
+
+<h3 id="52-조테로-스타일-만들기">
+<span class="me-2">5.2. 조테로 스타일 만들기</span><a href="#52-%EC%A1%B0%ED%85%8C%EB%A1%9C-%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<p><a href="https://editor.citationstyles.org/visualEditor/" target="_blank" rel="noopener noreferrer">https://editor.citationstyles.org/visualEditor/</a></p>
+
+<ul>
+  <li>얘로 만들기를 시도한 적이 있었다</li>
+  <li>챗지피티로 하면 잘 된다ㅎㅎ…</li>
+</ul>
+
+<h3 id="53-한국어학-참고문헌-style">
+<span class="me-2">5.3. 한국어학 참고문헌 style</span><a href="#53-%ED%95%9C%EA%B5%AD%EC%96%B4%ED%95%99-%EC%B0%B8%EA%B3%A0%EB%AC%B8%ED%97%8C-style" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<ul>
+  <li><a href="https://github.com/go00ood/zotero-style-korean" target="_blank" rel="noopener noreferrer">https://github.com/go00ood/zotero-style-korean</a></li>
+</ul>
+
+<h2 id="6-도움이-되는-plugin-추천">
+<span class="me-2">6. 도움이 되는 plugin 추천</span><a href="#6-%EB%8F%84%EC%9B%80%EC%9D%B4-%EB%90%98%EB%8A%94-plugin-%EC%B6%94%EC%B2%9C" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+
+<h3 id="61-translate-for-zotero">
+<span class="me-2">6.1. Translate for Zotero</span><a href="#61-translate-for-zotero" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<p><a href="https://github.com/windingwind/zotero-pdf-translate#readme" target="_blank" rel="noopener noreferrer">https://github.com/windingwind/zotero-pdf-translate#readme</a></p>
+
+<p><a href="https://github.com/user-attachments/assets/0b4e1d44-56d6-4ead-86b8-35888300d799" class="popup img-link  shimmer" target="_blank" rel="noopener noreferrer"><img src="https://github.com/user-attachments/assets/0b4e1d44-56d6-4ead-86b8-35888300d799" alt="Translate for Zotero" loading="lazy"></a></p>
+<ul>
+  <li>적당히 잘되므로 매우 행복하게 해줌.</li>
+  <li>자동번역</li>
+</ul>
+
+<h3 id="62-better-notes-for-zotero">
+<span class="me-2">6.2. Better Notes for Zotero</span><a href="#62-better-notes-for-zotero" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<p><a href="https://github.com/windingwind/zotero-better-notes#readme" target="_blank" rel="noopener noreferrer">https://github.com/windingwind/zotero-better-notes#readme</a></p>
+
+<h3 id="63-actions-and-tags-for-zotero">
+<span class="me-2">6.3. Actions and Tags for Zotero</span><a href="#63-actions-and-tags-for-zotero" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<p><a href="https://github.com/windingwind/zotero-actions-tags#readme" target="_blank" rel="noopener noreferrer">https://github.com/windingwind/zotero-actions-tags#readme</a></p>
+<ul>
+  <li>이런 저런 자동화</li>
+  <li>안읽은 문서 unread 태그 달아줌</li>
+</ul>
+
+<h3 id="64-ethereal-style">
+<span class="me-2">6.4. Ethereal Style</span><a href="#64-ethereal-style" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<p><a href="https://github.com/muisedestiny/zotero-style#readme" target="_blank" rel="noopener noreferrer">https://github.com/muisedestiny/zotero-style#readme</a></p>
+
+<ul>
+  <li>무슨 기능인지 잘 모르겠는데 많이들 쓰는듯.</li>
+</ul>
+
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/">프로그래밍</a>,
+          <a href="/categories/zotero/">zotero</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+
+    <div class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      ">
+      <div class="license-wrapper">
+        
+          
+
+          이 기사는 저작권자의 
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">
+          CC BY-NC 4.0
+        </a>
+         라이센스를 따릅니다.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">공유하기</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+
+      
+
+      <a href="https://twitter.com/intent/tweet?text=[Zotero]%20%EC%A1%B0%ED%85%8C%EB%A1%9C%207%20%EC%82%AC%EC%9A%A9%EB%B2%95(zotero+Google%20Drive+Notion%20%EC%97%B0%EB%8F%99)%20-%20go00ood&amp;url=https%3A%2F%2Fgo00ood.github.io%2Fposts%2Fzotero7settings%2F" target="_blank" rel="noopener noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+
+      
+
+      <a href="https://www.facebook.com/sharer/sharer.php?title=[Zotero]%20%EC%A1%B0%ED%85%8C%EB%A1%9C%207%20%EC%82%AC%EC%9A%A9%EB%B2%95(zotero+Google%20Drive+Notion%20%EC%97%B0%EB%8F%99)%20-%20go00ood&amp;u=https%3A%2F%2Fgo00ood.github.io%2Fposts%2Fzotero7settings%2F" target="_blank" rel="noopener noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+
+      
+
+      <a href="https://t.me/share/url?url=https%3A%2F%2Fgo00ood.github.io%2Fposts%2Fzotero7settings%2F&amp;text=[Zotero]%20%EC%A1%B0%ED%85%8C%EB%A1%9C%207%20%EC%82%AC%EC%9A%A9%EB%B2%95(zotero+Google%20Drive+Notion%20%EC%97%B0%EB%8F%99)%20-%20go00ood" target="_blank" rel="noopener noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+
+    <button id="copy-link" aria-label="Copy link" class="btn small" data-bs-toggle="tooltip" data-bs-placement="top" title="링크 복사하기" data-title-succeed="링크가 복사되었습니다!">
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+  <script src="https://utteranc.es/client.js" repo="go00ood/go00ood.github.io" issue-term="pathname" theme="preferred-color-scheme" crossorigin="anonymous" async>
+  </script>
+</article>
+
+
+            
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
+            <div class="access">
+              <!-- Get 5 last posted/updated posts -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section id="access-lastmod">
+    <h2 class="panel-heading">최근 업데이트</h2>
+    <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/Seokdok-gugyeol/">[구결] 석독구결 기본 정리</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/last-modified/">[Github] Github 블로그 jekyll-last-modified-at 오류</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/hanja/">한문 구결 독음</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/Hugging-Face-Spaces-gradio/">[Hugging Face] Hugging Face Spaces 사용과 gradio</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/Hugging-Face/">[Hugging Face] Hugging Face Model &amp; Spaces 관련... /Pytorch Hugging Face 올리기 / repo.git_push() 오류</a>
+        </li>
+      
+    </ul>
+  </section>
+  <!-- #access-lastmod -->
+
+
+              <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+            
+              
+              
+
+
+
+
+
+
+  <div class="toc-border-cover z-3"></div>
+  <section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4">
+    <h2 class="panel-heading ps-3 pb-2 mb-0">바로가기</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">관련된 글</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/last-modified/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time data-ts="1752159600" data-df="YYYY/MM/DD">
+  2025/07/11
+</time>
+
+              <h4 class="pt-0 my-2">[Github] Github 블로그 jekyll-last-modified-at 오류</h4>
+              <div class="text-muted">
+                <p>1. 문제    jekyll-last-modified-at를 제대로 설치했고, Actions을 통해 배포함   로컬에서는 업데이트 일자가 마지막 수정 시간과 대응되지만, 깃헙에 올리면 모든 포스트의 업데이트 일자가 수정됨   배포 시점에 모든 페이지가 동일한 last_modified_at으로 처리.       fetch-depth: 0 으로 설정하는 ...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/pypi/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time data-ts="1741014000" data-df="YYYY/MM/DD">
+  2025/03/04
+</time>
+
+              <h4 class="pt-0 my-2">[pypi] Pypi 배포 - 코드와 관련된 것들... </h4>
+              <div class="text-muted">
+                <p>다루는 내용…  pypi에… 뭘 쳐야 올라가냐  pypi 로그인!!!! 왜 안됨?  ​  또 까먹고 다시 찾아버린 무엇…  계층구조는 됐고… 기본 구조에서 다시 올리기…. 에휴…  ​  ​  1. pypi에… 뭘 쳐야 올라가냐  ​  모두다 구성한 파일 내에서 터미널 열고 실행하면 된다…  1 2 pip install setuptools wheel p...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/git/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time data-ts="1741014000" data-df="YYYY/MM/DD">
+  2025/03/04
+</time>
+
+              <h4 class="pt-0 my-2">[Github] Git... 관련된 것 / commit 작성법법 / vscode에서 사용 안됨 / GitHub release?...</h4>
+              <div class="text-muted">
+                <p>vscode에서 사용 /commit 작성법/ vscode 안됨</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a href="/posts/githubblog/" class="btn btn-outline-primary" aria-label="이전 글">
+      <p>[Github] Github 블로그 만들기(2025.03.01. 기준)</p>
+    </a>
+  
+
+  
+    <a href="/posts/Hugging-Face-Spaces-gradio/" class="btn btn-outline-primary" aria-label="다음 글">
+      <p>[Hugging Face] Hugging Face Spaces 사용과 gradio</p>
+    </a>
+  
+</nav>
+
+            
+
+            <!-- The Footer -->
+
+<footer aria-label="Site Info" class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  ">
+  <p>©
+    <time>2025</time>
+    
+    
+      <a href="https://github.com/go00ood" target="_blank" rel="noopener noreferrer">go00ood</a>.
+    
+    <!-- 메인 텍스트 (보이는 부분) -->
+    This work is licensed under 
+    <span data-bs-toggle="tooltip" data-bs-placement="top" title="이 콘텐츠는 비상업적(CC BY-NC 4.0) 라이선스 하에 제공되며, 출처를 명확히 표기해야 합니다.">
+      <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer noopener noreferrer">
+        CC BY-NC 4.0
+      </a>
+    </span>.
+  </p>
+
+  <p>Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener noopener noreferrer">Jekyll</a> with <a data-bs-toggle="tooltip" data-bs-placement="top" title="v7.2.4" href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener noopener noreferrer">Chirpy</a> theme
+  </p>
+</footer>
+
+          </div>
+        </div>
+
+        <!-- The Search results -->
+
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none">
+  <div class="col-11 content">
+    <div id="search-hints">
+      <!-- The trending tags list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div>
+
+    
+      <aside id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true" data-bs-autohide="false">
+  <div class="toast-header">
+    <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body text-center pt-0">
+    <p class="px-2 mb-3">새 버전의 콘텐츠를 사용할 수 있습니다.</p>
+    <button type="button" class="btn btn-primary" aria-label="Update">
+      업데이트
+    </button>
+  </div>
+</aside>
+
+    
+
+    <!-- Embedded scripts -->
+
+    
+      
+      <!-- The comments switcher -->
+
+
+    
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('search-results'),
+      json: '/assets/js/data/search.json',
+      searchResultTemplate: '  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">    <header>      <h2><a href="{url}">{title}</a></h2>      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">        {categories}        {tags}      </div>    </header>    <p>{content}</p>  </article>',
+      noResultsText: '<p class="mt-5">검색 결과가 없습니다.</p>',
+      templateMiddleware: function(prop, value, template) {
+        if (prop === 'categories') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          }
+        }
+
+        if (prop === 'tags') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          }
+        }
+      }
+    });
+  });
+</script>
+
+    <script src="/assets/hanja-annotator.js" defer></script>
+    
+  </body>
+</html>
+
