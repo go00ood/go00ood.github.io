@@ -44,7 +44,7 @@ jobs:
 
       # Node.js 설치 (npm 실행을 위해 필요)
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18' # 최신 버전 사용
 
