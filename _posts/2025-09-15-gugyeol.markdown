@@ -1,0 +1,217 @@
+---
+layout: post
+title:  "[구결] 구결자 입력기"
+description: 독음을 입력하면 구결자를 제시합니다
+date:   2025-09-15
+categories: 구결 구결자보조
+---
+
+# 📝 구결자 입력기
+
+
+<!-- 입력창 -->
+<textarea id="input-text" placeholder="독음을 입력하세요 (예: ᄒᆞ)" oninput="resize(this)"></textarea>
+
+<!-- 출력 박스 전체 -->
+<div class="output-wrapper">
+  <!-- 제목줄 -->
+  <div class="output-header">
+    <span class="output-title">검색 결과</span>
+  </div>
+  <!-- 변환 결과 표시 -->
+  <div id="preview"></div>
+</div>
+
+<p style="margin-top:0.6em; font-size:0.95rem; color:gray;">
+입력 편의를 위해 아래의 대표음을 사용합니다.
+</p>
+
+<div class="dok-grid">
+  <div> ㄱ</div><div> 거</div><div> 겨</div><div> 고</div><div> 곰</div>
+  <div> 과</div><div> 근</div><div> 긔</div><div> ᄀᆞᆮ</div><div> ᄀᆞᆺ</div>
+  <div> 나</div><div> 노</div><div> 누</div><div> 니</div><div> ᄂᆞ</div>
+  <div> 은</div><div> 다</div><div> 다</div><div> 디</div><div> 뎌</div>
+  <div> 도</div><div> 두</div><div> 디</div><div> ᄃᆞ</div><div> ᄃᆞᆯ</div>
+  <div> ᄃᆡ</div><div> ᄒᆡ</div><div> 라</div><div> 로</div><div> 리</div>
+  <div> 리</div><div> 을</div><div> 을</div><div> 마</div><div> 며</div>
+  <div> 모</div><div> 믈</div><div> ㅁ</div><div> ᄇᆞᆺ</div><div> ㅂ</div>
+  <div> 사</div><div> 셔</div><div> 시</div><div> 시</div><div> ᄉᆞᆸ</div>
+  <div> ㅅ</div><div> 아</div><div> 여</div><div> 여</div><div> 오</div>
+  <div> 우</div><div> 의</div><div> 이</div><div> 이</div><div> 져</div>
+  <div> 지</div><div> 텨</div><div> 하</div><div> 호</div><div> 호</div>
+  <div> 히</div><div> ᄒᆞ</div><div> ᄒᆞᆫ</div>
+</div>
+
+<style>
+.dok-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px 12px;
+  max-width: 700px;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+}
+.dok-grid div {
+  padding: 2px 4px;
+}
+</style>
+
+
+<style>
+/* 입력창 */
+#input-text {
+  width: 100%;
+  max-width: 700px;
+  min-height: 2.5em;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: inherit;
+  resize: none;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+/* 출력 전체 래퍼 */
+.output-wrapper {
+  max-width: 700px;
+  margin-top: 1.2em;
+  border-radius: 8px;
+  overflow: visible;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* 제목줄 */
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 10px 14px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: inherit;
+  position: relative;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* 출력 박스 */
+#preview {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 14px 16px;
+  font-size: 1.05rem;
+  color: inherit;
+  line-height: 1.6;
+  box-sizing: border-box;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* 복사 버튼 */
+.copy-btn {
+  background: none;
+  border: none;
+  color: #bbb;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 6px;
+  position: relative;
+}
+
+.copy-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* 복사됨 메시지 */
+.copied-msg {
+  font-size: 0.8em;
+  color: #4caf50;
+  margin-left: 6px;
+  display: none;
+}
+
+/* 다크모드 대응 */
+@media (prefers-color-scheme: dark) {
+  #input-text {
+    background-color: rgba(30, 30, 30, 0.4);
+    color: #eee;
+  }
+
+  .output-header {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #eee;
+  }
+
+  #preview {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #eee;
+  }
+
+  .copy-btn {
+    color: #aaa;
+  }
+
+  .copy-btn:hover {
+    color: #fff;
+  }
+}
+</style>
+
+<script>
+function resize(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+}
+
+(async function () {
+  const res = await fetch("{{ '/assets/data/gugyeol_dok.json' | relative_url }}");
+  const gukyolData = await res.json();
+
+  const input = document.getElementById('input-text');
+  const preview = document.getElementById('preview');
+
+  input.addEventListener('input', () => {
+    const query = input.value.trim();
+    preview.innerHTML = "";
+
+    if (query.length === 0) return;
+
+    const results = gukyolData.filter(item => item.dok.includes(query));
+
+    if (results.length === 0) {
+      preview.innerHTML = "<p>결과 없음</p>";
+      return;
+    }
+
+    let html = "<ol>";
+    results.forEach((r, idx) => {
+      const id = "copymsg-" + idx;
+      html += `
+        <li>
+          ${r.gukyol} (${r.dok})
+          <button class="copy-btn" onclick="copyToClipboard('${r.gukyol}', '${id}')">📋</button>
+          <span id="${id}" class="copied-msg">✔ 복사됨</span>
+        </li>`;
+    });
+    html += "</ol>";
+    preview.innerHTML = html;
+  });
+
+  window.copyToClipboard = (text, id) => {
+    navigator.clipboard.writeText(text).then(() => {
+      const msg = document.getElementById(id);
+      if (msg) {
+        msg.style.display = "inline";
+        setTimeout(() => { msg.style.display = "none"; }, 1200);
+      }
+    });
+  };
+})();
+</script>
