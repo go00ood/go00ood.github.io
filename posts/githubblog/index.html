@@ -1,0 +1,501 @@
+<!doctype html><html lang="ko-KR" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="[Github] Github 블로그 만들기(2025.03.01. 기준)" /><meta property="og:locale" content="ko_KR" /><meta name="description" content="0. Github Blog 전반적 진행 흐름 username.github.io 리포지토리 생성 Jekyll Theme 선정(블로그 템플릿 느낌) ruby 다운 Jekyll 설치 사이트 실행 _config.yml 수정 세부적인 수정" /><meta property="og:description" content="0. Github Blog 전반적 진행 흐름 username.github.io 리포지토리 생성 Jekyll Theme 선정(블로그 템플릿 느낌) ruby 다운 Jekyll 설치 사이트 실행 _config.yml 수정 세부적인 수정" /><link rel="canonical" href="https://go00ood.github.io/posts/githubblog/" /><meta property="og:url" content="https://go00ood.github.io/posts/githubblog/" /><meta property="og:site_name" content="go00ood" /><meta property="og:image" content="https://github.com/user-attachments/assets/0f20b62f-74c8-436b-ac82-687376862c88" /><meta property="og:image:alt" content="깃헙 블로그" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2025-03-02T00:00:00+09:00" /><meta name="twitter:card" content="summary_large_image" /><meta property="twitter:image" content="https://github.com/user-attachments/assets/0f20b62f-74c8-436b-ac82-687376862c88" /><meta name="twitter:image:alt" content="깃헙 블로그" /><meta property="twitter:title" content="[Github] Github 블로그 만들기(2025.03.01. 기준)" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-03T00:58:27+09:00","datePublished":"2025-03-02T00:00:00+09:00","description":"0. Github Blog 전반적 진행 흐름 username.github.io 리포지토리 생성 Jekyll Theme 선정(블로그 템플릿 느낌) ruby 다운 Jekyll 설치 사이트 실행 _config.yml 수정 세부적인 수정","headline":"[Github] Github 블로그 만들기(2025.03.01. 기준)","image":{"lqip":"data:image/jpeg;base64,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","alt":"깃헙 블로그","url":"https://github.com/user-attachments/assets/0f20b62f-74c8-436b-ac82-687376862c88","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://go00ood.github.io/posts/githubblog/"},"url":"https://go00ood.github.io/posts/githubblog/"}</script><title>[Github] Github 블로그 만들기(2025.03.01. 기준) | go00ood</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="go00ood"><meta name="application-name" content="go00ood"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css"><link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/NanumBarunGothicYetHangul.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.32.2/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"> <script src="/assets/js/dist/theme.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/ko.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js,npm/tocbot@4.32.2/dist/tocbot.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script defer src="/app.min.js?baseurl=&register=true" ></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-W0QY767ZSL"></script> <script> document.addEventListener('DOMContentLoaded', () => { window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-W0QY767ZSL'); }); </script><body><aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end"><header class="profile-wrapper"> <a href="/" id="avatar" class="rounded-circle"><img src="/assets/img/main/profile.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a> <a class="site-title d-block" href="/">go00ood</a><p class="site-subtitle fst-italic mb-0">맞춤법 파괴론자</p></header><nav class="flex-column flex-grow-1 w-100 ps-0"><ul class="nav">
+<li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home"></i> <span>홈</span> </a>
+</li>
+<li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream"></i> <span>카테고리</span> </a>
+</li>
+<li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags"></i> <span>태그</span> </a>
+</li>
+<li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive"></i> <span>아카이브</span> </a>
+</li>
+<li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle"></i> <span>정보</span> </a>
+</li>
+</ul></nav><div class="sidebar-bottom d-flex flex-wrap align-items-center w-100"> <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/go00ood" aria-label="github" target="_blank" rel="noopener noreferrer noopener noreferrer"> <i class="fab fa-github"></i> </a> <a href="javascript:location.href%20=%20'mailto:'%20+%20['go00od','naver.com'].join('@')" aria-label="email"> <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss"> <i class="fas fa-rss"></i> </a>
+</div></aside><div id="main-wrapper" class="d-flex justify-content-center">
+<div class="container d-flex flex-column px-xxl-5">
+<header id="topbar-wrapper" aria-label="Top Bar"><div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100">
+<nav id="breadcrumb" aria-label="Breadcrumb"> <span> <a href="/">홈</a> </span> <span>[Github] Github 블로그 만들기(2025.03.01. 기준)</span></nav><button type="button" id="sidebar-trigger" class="btn btn-link"> <i class="fas fa-bars fa-fw"></i> </button><div id="topbar-title"> 포스트</div>
+<button type="button" id="search-trigger" class="btn btn-link"> <i class="fas fa-search fa-fw"></i> </button> <search id="search" class="align-items-center ms-3 ms-lg-0"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="검색..."> </search> <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">취소</button>
+</div></header><div class="row flex-grow-1">
+<main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4"><article class="px-1" data-toc="true"><header><h1 data-toc-skip>[Github] Github 블로그 만들기(2025.03.01. 기준)</h1>
+<div class="post-meta text-muted"> <span> 게시 <time data-ts="1740841200" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom"> 2025/03/02 </time> </span> <span> 업데이트 <time data-ts="1740931107" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom"> 2025/03/03 </time> </span><div class="mt-3 mb-3"> <a href="https://github.com/user-attachments/assets/0f20b62f-74c8-436b-ac82-687376862c88" class="popup img-link preview-img blur" target="_blank" rel="noopener noreferrer"><img data-src="https://github.com/user-attachments/assets/0f20b62f-74c8-436b-ac82-687376862c88" alt="깃헙 블로그" width="1200" height="630" data-lqip="true" src="data:image/jpeg;base64,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"></a><figcaption class="text-center pt-2 pb-2">깃헙 블로그</figcaption>
+</div>
+<div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/go00ood" target="_blank" rel="noopener noreferrer">go00ood</a> </em> </span><div> <span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="1276 단어"> <em>7 분</em>읽는 시간</span>
+</div>
+</div>
+</div></header><div id="toc-bar" class="d-flex align-items-center justify-content-between invisible"> <span class="label text-truncate">[Github] Github 블로그 만들기(2025.03.01. 기준)</span> <button type="button" class="toc-trigger btn me-1"> <i class="fa-solid fa-list-ul fa-fw"></i> </button>
+</div>
+<button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm"> <span class="label ps-2 pe-1">바로가기</span> <i class="fa-solid fa-angle-right fa-fw"></i> </button> <dialog id="toc-popup" class="p-0"><div class="header d-flex flex-row align-items-center justify-content-between">
+<div class="label text-truncate py-2 ms-4">[Github] Github 블로그 만들기(2025.03.01. 기준)</div>
+<button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75"> <i class="fas fa-close"></i> </button>
+</div>
+<div id="toc-popup-content" class="px-4 py-3 pb-4"></div></dialog><div class="content">
+<h2 id="0-github-blog-전반적-진행-흐름">
+<span class="me-2">0. Github Blog 전반적 진행 흐름</span><a href="#0-github-blog-%EC%A0%84%EB%B0%98%EC%A0%81-%EC%A7%84%ED%96%89-%ED%9D%90%EB%A6%84" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<ol>
+<li>username.github.io 리포지토리 생성</li>
+<li>Jekyll Theme 선정(블로그 템플릿 느낌)<ul>
+<li>ruby 다운</li>
+<li>Jekyll 설치</li>
+</ul>
+</li>
+<li>사이트 실행</li>
+<li>_config.yml 수정</li>
+<li>세부적인 수정</li>
+</ol>
+<h2 id="1-github-blog-초기-시작">
+<span class="me-2">1. Github Blog 초기 시작</span><a href="#1-github-blog-%EC%B4%88%EA%B8%B0-%EC%8B%9C%EC%9E%91" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<blockquote><p>매우 친절하다, 대략적으로 따라하면 적당히 실행이 된다. <br> 다만 2025.03.01. 기준 몇 가지 오류가 있음</p></blockquote>
+<p><a href="https://wlqmffl0102.github.io/posts/Making-Git-blogs-for-beginners-1/" target="_blank" rel="noopener noreferrer">https://wlqmffl0102.github.io/posts/Making-Git-blogs-for-beginners-1/</a></p>
+<h3 id="오류-관련-메모">
+<span class="me-2">오류 관련 메모</span><a href="#%EC%98%A4%EB%A5%98-%EA%B4%80%EB%A0%A8-%EB%A9%94%EB%AA%A8" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<h4 id="1-ruby는-최신-버전으로-다운받아도-작동된다">
+<span class="me-2">1. Ruby는 최신 버전으로 다운받아도 작동된다.</span><a href="#1-ruby%EB%8A%94-%EC%B5%9C%EC%8B%A0-%EB%B2%84%EC%A0%84%EC%9C%BC%EB%A1%9C-%EB%8B%A4%EC%9A%B4%EB%B0%9B%EC%95%84%EB%8F%84-%EC%9E%91%EB%8F%99%EB%90%9C%EB%8B%A4" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h4>
+<ul><li>
+<a href="https://wlqmffl0102.github.io/posts/Making-Git-blogs-for-beginners-2/" target="_blank" rel="noopener noreferrer">Step 2-2. Ruby 설치</a> 여기서는 Ruby+Devkit 2.6.8-1 (x64)를 권장하지만, <code class="language-plaintext highlighter-rouge">rubyinstaller-devkit-3.3.7-1-x64</code>로 해도 잘 작동</li></ul>
+<p><br></p>
+<h4 id="2-assetsjsdistminjs-not-found-에러-발생">
+<span class="me-2">2. assets/js/dist/*.min.js Not Found 에러 발생</span><a href="#2-assetsjsdistminjs-not-found-%EC%97%90%EB%9F%AC-%EB%B0%9C%EC%83%9D" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h4>
+<ul>
+<li>시키는 대로 했었는데 나에게는 assets/js/dist 속에 별다른 파일이 없었다.</li>
+<li>관련된 추가 처리가 필요했다. (2. Node.js 설치로 이동)</li>
+</ul>
+<p><br></p>
+<h3 id="3-step-3-3-github로-push-이후-작업">
+<span class="me-2">3. Step 3-3. Github로 Push 이후 작업</span><a href="#3-step-3-3-github%EB%A1%9C-push-%EC%9D%B4%ED%9B%84-%EC%9E%91%EC%97%85" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<ul>
+<li>github에 push를 했을 때 바로 작동하지 않고 무수한 오류가 떴다. (로컬에서는 잘 작동됐었음)</li>
+<li>Action에서 문제가 발생(해결은 <strong>3. Actions 관련 추가 설정</strong> 참고)</li>
+</ul>
+<p><br></p>
+<h2 id="2-nodejs-설치">
+<span class="me-2">2. Node.js 설치</span><a href="#2-nodejs-%EC%84%A4%EC%B9%98" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<p><a href="https://nodejs.org/ko" target="_blank" rel="noopener noreferrer">https://nodejs.org/ko</a></p>
+<ul>
+<li>사이트 가서 다운받고 하라는 대로 실행해서 다운 완료함</li>
+<li>CMD 열고 프로젝트 폴더(<code class="language-plaintext highlighter-rouge">cd C:\~\username.github.io</code> - 로컬환경)로 가서 <code class="language-plaintext highlighter-rouge">npm install &amp;&amp; npm run build</code> 입력</li>
+</ul>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>cd C:\~\username.github.io
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>npm install &amp;&amp; npm run build
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<ul>
+<li><p>이러니 <code class="language-plaintext highlighter-rouge">assets/js/dist/*.min.js</code>가 생김…</p></li>
+<li><p><code class="language-plaintext highlighter-rouge">.gitignore</code>에서 <code class="language-plaintext highlighter-rouge">assets/js/dist</code> 주석 처리</p></li>
+</ul>
+<p><br></p>
+<h3 id="왠지-모르게-다시-발생한-오류">
+<span class="me-2">왠지 모르게 다시 발생한 오류</span><a href="#%EC%99%A0%EC%A7%80-%EB%AA%A8%EB%A5%B4%EA%B2%8C-%EB%8B%A4%EC%8B%9C-%EB%B0%9C%EC%83%9D%ED%95%9C-%EC%98%A4%EB%A5%98" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>Can't find stylesheet to import
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<p><a href="https://github.com/cotes2020/jekyll-theme-chirpy/discussions/1809" target="_blank" rel="noopener noreferrer">https://github.com/cotes2020/jekyll-theme-chirpy/discussions/1809</a></p>
+<ul>
+<li>저기서 많은 사람이 얘기를 나눔</li>
+<li>나 역시도</li>
+</ul>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>npm install &amp;&amp; npm run build
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<p>얘를 하다보니까 해결이 됐었던 기억…? (명확하지가 않다…)</p>
+<p><br></p>
+<h2 id="3-actions-관련-추가-설정">
+<span class="me-2">3. Actions 관련 추가 설정</span><a href="#3-actions-%EA%B4%80%EB%A0%A8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<p><a href="https://jjikin.com/posts/Jekyll-Chirpy-%ED%85%8C%EB%A7%88%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Github-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0(2023-6%EC%9B%94-%EA%B8%B0%EC%A4%80)/#github-%EB%B0%B0%ED%8F%AC" target="_blank" rel="noopener noreferrer">https://jjikin.com/posts/Jekyll-Chirpy-테마를-활용한-Github-블로그-만들기(2023-6월-기준)/#github-배포</a></p>
+<blockquote><p>해당 블로그의 [Github 배포] 부분에서 큰 도움을 얻음</p></blockquote>
+<hr>
+<h3 id="기본적-절차">
+<span class="me-2">기본적 절차</span><a href="#%EA%B8%B0%EB%B3%B8%EC%A0%81-%EC%A0%88%EC%B0%A8" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<ul>
+<li><p>GitHub Actions으로 변경</p></li>
+<li><p>Configure 커밋</p></li>
+<li>
+<p>Github - Actions에서 제대로 되는지 확인</p>
+<blockquote><p>근데 난 여기서 또 문제가 생김…</p></blockquote>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<p><br></p>
+<h3 id="build의-setup-ruby-오류">
+<span class="me-2">Build의 setup ruby 오류</span><a href="#build%EC%9D%98-setup-ruby-%EC%98%A4%EB%A5%98" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<h4 id="1-linux-관련-">
+<span class="me-2">1. linux 관련 …</span><a href="#1-linux-%EA%B4%80%EB%A0%A8-" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h4>
+<p>[오류 메시지]</p>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td>
+<td class="rouge-code"><pre>&gt; bundle install
+/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle config --local path /home/runner/work/go00ood.github.io/go00ood.github.io/vendor/bundle
+/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle config --local deployment true
+Cache key: setup-ruby-bundler-cache-v6-ubuntu-24.04-x64-ruby-3.1.6-wd-/home/runner/work/go00ood.github.io/go00ood.github.io-with--without--only--Gemfile.lock-85ff184d28b898011dfc802143920673feb07e6d078d715de2590e67cf1d2eb7
+/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle install --jobs 4
+Your bundle only supports platforms ["x64-mingw-ucrt"] but your local platform
+is x86_64-linux. Add the current platform to the lockfile with
+`bundle lock --add-platform x86_64-linux` and try again.
+Error: The process '/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle' failed with exit code 16
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<p><br></p>
+<p>일단 이 오류를 해결하기 위해 로컬에서 코드 실행</p>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>bundle lock --add-platform x86_64-linux
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<p><br></p>
+<hr>
+<p><br></p>
+<ul><li>실행 이후 푸시를 해봐도 여전히 <code class="language-plaintext highlighter-rouge">setup ruby</code>가 작동되지 않음</li></ul>
+<p><br></p>
+<h4 id="2-ruby-설치-버전-관련">
+<span class="me-2">2. Ruby 설치 버전 관련</span><a href="#2-ruby-%EC%84%A4%EC%B9%98-%EB%B2%84%EC%A0%84-%EA%B4%80%EB%A0%A8" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h4>
+<p><strong>[오류메시지]</strong></p>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td>
+<td class="rouge-code"><pre>/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle config --local path /home/runner/work/go00ood.github.io/go00ood.github.io/vendor/bundle
+/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle config --local deployment true
+Cache key: setup-ruby-bundler-cache-v6-ubuntu-24.04-x64-ruby-3.1.6-wd-/home/runner/work/go00ood.github.io/go00ood.github.io-with--without--only--Gemfile.lock-444912e103f2dd6ddf3e343427f9050aedbef078b709b991c2ada223500d7858
+/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle install --jobs 4
+Fetching gem metadata from https://rubygems.org/.........
+The following platform specific gems are getting installed, yet the lockfile includes only their generic ruby version:
+ * zeitwerk-2.7.2
+ * sass-embedded-1.85.1-x86_64-linux-gnu
+Please run `bundle lock --normalize-platforms` and commit the resulting lockfile.
+Alternatively, you may run `bundle lock --add-platform &lt;list-of-platforms-that-you-want-to-support&gt;`
+zeitwerk-2.7.2 requires ruby version &gt;= 3.2, which is incompatible with the
+current version, 3.1.6
+Error: The process '/opt/hostedtoolcache/Ruby/3.1.6/x64/bin/bundle' failed with exit code 5
+
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<ul><li>3.2 이상의 Ruby가 설치되어야 하는데,, 갑자기 안 되었다.</li></ul>
+<hr>
+<p>[해결방법]</p>
+<p><code class="language-plaintext highlighter-rouge">.github/workflows/jekyll.yml</code></p>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td>
+<td class="rouge-code"><pre>  (생략)
+  
+      - name: Setup Ruby
+        # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
+        uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
+        with:
+          ruby-version: '3.3' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          cache-version: 0 # Increment this number if you need to re-download cached gems
+  
+  (생략)
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<ul><li>
+<code class="language-plaintext highlighter-rouge">ruby-version: '3.3'</code> 이곳에서 수정하니 정상적으로 반영이 되었다.</li></ul>
+<hr>
+<h3 id="build-with-jekyll-오류">
+<span class="me-2">Build with Jekyll 오류</span><a href="#build-with-jekyll-%EC%98%A4%EB%A5%98" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h3>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td>
+<td class="rouge-code"><pre>Configuration file: /home/runner/work/go00ood.github.io/go00ood.github.io/_config.yml
+ Theme Config file: /home/runner/work/go00ood.github.io/go00ood.github.io/_config.yml
+            Source: /home/runner/work/go00ood.github.io/go00ood.github.io
+       Destination: /home/runner/work/go00ood.github.io/go00ood.github.io/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+Error: Can't find stylesheet to import.
+  ╷
+1 │ @use 'vendors/bootstrap';
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  main.bundle.scss 1:1                                                                           @use
+  /home/runner/work/go00ood.github.io/go00ood.github.io/assets/css/jekyll-theme-chirpy.scss 1:1  root stylesheet 
+  Conversion error: Jekyll::Converters::Scss encountered an error while converting 'assets/css/jekyll-theme-chirpy.scss':
+                    Can't find stylesheet to import.
+                    ------------------------------------------------
+      Jekyll 4.4.1   Please append --trace to the build command 
+                     for any additional information or backtrace. 
+                    ------------------------------------------------
+
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<hr>
+<p>[해결방법]</p>
+<p><code class="language-plaintext highlighter-rouge">.github/workflows/jekyll.yml</code></p>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td>
+<td class="rouge-code"><pre>(생략)
+
+# Node.js 설치 (npm 실행을 위해 필요)
+  - name: Setup Node.js
+    uses: actions/setup-node@v3
+    with:
+      node-version: '18' # 최신 버전 사용
+
+  # 필수 패키지 설치
+  - name: Install dependencies
+    run: npm install      # 필수 패키지 설치
+  - name: Install dependencies
+    run: npm install
+
+  # SCSS 및 JS 파일 빌드
+  - name: Build assets
+    run: npm run build      
+
+  (생략)
+
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<ul><li>해당 코드를 추가로 넣었다.</li></ul>
+<h2 id="4-utterances-댓글-연동">
+<span class="me-2">4. utterances 댓글 연동</span><a href="#4-utterances-%EB%8C%93%EA%B8%80-%EC%97%B0%EB%8F%99" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<ul>
+<li>매우 간단하게 되었다.</li>
+<li><a href="https://www.irgroup.org/posts/utternace-comments-system/#chirpy%EC%97%90-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%AC%EA%B8%B0" target="_blank" rel="noopener noreferrer">https://www.irgroup.org/posts/utternace-comments-system/#chirpy%EC%97%90-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%AC%EA%B8%B0</a></li>
+</ul>
+<blockquote><p>해당 블로그를 참고하면 된다</p></blockquote>
+<p><br></p>
+<h2 id="5-새탭에서-열기">
+<span class="me-2">5. 새탭에서 열기</span><a href="#5-%EC%83%88%ED%83%AD%EC%97%90%EC%84%9C-%EC%97%B4%EA%B8%B0" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<ul>
+<li>블로그 내 삽입한 외부링크를 새탭으로 열고 싶은 욕구가 있었다.</li>
+<li><a href="https://jason9288.github.io/posts/github_blog_4/" target="_blank" rel="noopener noreferrer">https://jason9288.github.io/posts/github_blog_4/</a></li>
+</ul>
+<blockquote><p>이 블로그 도움이 된다. [외부 링크 새 탭에서 열리게 설정하기]</p></blockquote>
+<ul>
+<li>Gemfile에서 <code class="language-plaintext highlighter-rouge">gem 'jekyll-target-blank'</code>을 입력하는 방식은 나는 되지 않았으므로,, 아래의 코드를 입력했다.</li>
+<li>저장소 디렉토리로 이동(로컬환경)</li>
+</ul>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>cd C:\~\username.github.io
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>gem install jekyll-target-blank
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<p><br></p>
+<hr>
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code>파일을 일부 수정하자.</p>
+<div class="language-plaintext highlighter-rouge">
+<div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td>
+<td class="rouge-code"><pre>plugins:
+   - jekyll-target-blank
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+<p><br></p>
+<h2 id="6-마지막-수정-날짜-자동화-관련">
+<span class="me-2">6. 마지막 수정 날짜 자동화 관련</span><a href="#6-%EB%A7%88%EC%A7%80%EB%A7%89-%EC%88%98%EC%A0%95-%EB%82%A0%EC%A7%9C-%EC%9E%90%EB%8F%99%ED%99%94-%EA%B4%80%EB%A0%A8" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+</h2>
+<p><a href="https://moeun2.github.io/blog/jekyll-last-modified-at" target="_blank" rel="noopener noreferrer">https://moeun2.github.io/blog/jekyll-last-modified-at</a></p>
+<blockquote><p>실행되는지 확인 필요</p></blockquote>
+</div>
+<div class="post-tail-wrapper text-muted">
+<div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw me-1"></i> <a href="/categories/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/">프로그래밍</a>, <a href="/categories/blog/">blog</a>
+</div>
+<div class=" post-tail-bottom d-flex justify-content-between align-items-center mt-5 pb-2 ">
+<div class="license-wrapper"> 이 기사는 저작권자의 <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer"> CC BY-NC 4.0 </a> 라이센스를 따릅니다.</div>
+<div class="share-wrapper d-flex align-items-center"> <span class="share-label text-muted">공유하기</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=[Github]%20Github%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0(2025.03.01.%20%EA%B8%B0%EC%A4%80)%20-%20go00ood&amp;url=https%3A%2F%2Fgo00ood.github.io%2Fposts%2Fgithubblog%2F" target="_blank" rel="noopener noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter"> <i class="fa-fw fa-brands fa-square-x-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=[Github]%20Github%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0(2025.03.01.%20%EA%B8%B0%EC%A4%80)%20-%20go00ood&amp;u=https%3A%2F%2Fgo00ood.github.io%2Fposts%2Fgithubblog%2F" target="_blank" rel="noopener noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fgo00ood.github.io%2Fposts%2Fgithubblog%2F&amp;text=[Github]%20Github%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0(2025.03.01.%20%EA%B8%B0%EC%A4%80)%20-%20go00ood" target="_blank" rel="noopener noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <button id="copy-link" aria-label="Copy link" class="btn small" data-bs-toggle="tooltip" data-bs-placement="top" title="링크 복사하기" data-title-succeed="링크가 복사되었습니다!"> <i class="fa-fw fas fa-link pe-none fs-6"></i> </button> </span>
+</div>
+</div>
+</div>
+<script src="https://utteranc.es/client.js" repo="go00ood/go00ood.github.io" issue-term="pathname" theme="preferred-color-scheme" crossorigin="anonymous" async> </script></article></main><aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted"><div class="access"><section id="access-lastmod"><h2 class="panel-heading">최근 업데이트</h2>
+<ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
+<li class="text-truncate lh-lg"> <a href="/posts/gugyeol/">[구결] 구결자 입력기</a>
+</li>
+<li class="text-truncate lh-lg"> <a href="/posts/Seokdok-gugyeol/">[구결] 석독구결 기본 정리</a>
+</li>
+<li class="text-truncate lh-lg"> <a href="/posts/last-modified/">[Github] Github 블로그 jekyll-last-modified-at 오류</a>
+</li>
+<li class="text-truncate lh-lg"> <a href="/posts/hanja/">한문 구결 독음</a>
+</li>
+<li class="text-truncate lh-lg"> <a href="/posts/Hugging-Face-Spaces-gradio/">[Hugging Face] Hugging Face Spaces 사용과 gradio</a>
+</li>
+</ul></section></div>
+<div class="toc-border-cover z-3"></div>
+<section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4"><h2 class="panel-heading ps-3 pb-2 mb-0">바로가기</h2>
+<nav id="toc"></nav></section></aside>
+</div>
+<div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+<aside id="related-posts" aria-labelledby="related-label"><h3 class="mb-4" id="related-label">관련된 글</h3>
+<nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4"><article class="col"> <a href="/posts/last-modified/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1752159600" data-df="YYYY/MM/DD"> 2025/07/11 </time><h4 class="pt-0 my-2">[Github] Github 블로그 jekyll-last-modified-at 오류</h4>
+<div class="text-muted"><p>1. 문제 jekyll-last-modified-at를 제대로 설치했고, Actions을 통해 배포함 로컬에서는 업데이트 일자가 마지막 수정 시간과 대응되지만, 깃헙에 올리면 모든 포스트의 업데이트 일자가 수정됨 배포 시점에 모든 페이지가 동일한 last_modified_at으로 처리. fetch-depth: 0 으로 설정하는 ...</p></div>
+</div></a></article><article class="col"> <a href="/posts/pypi/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1741014000" data-df="YYYY/MM/DD"> 2025/03/04 </time><h4 class="pt-0 my-2">[pypi] Pypi 배포 - 코드와 관련된 것들...</h4>
+<div class="text-muted"><p>다루는 내용… pypi에… 뭘 쳐야 올라가냐 pypi 로그인!!!! 왜 안됨? ​ 또 까먹고 다시 찾아버린 무엇… 계층구조는 됐고… 기본 구조에서 다시 올리기…. 에휴… ​ ​ 1. pypi에… 뭘 쳐야 올라가냐 ​ 모두다 구성한 파일 내에서 터미널 열고 실행하면 된다… 1 2 pip install setuptools wheel p...</p></div>
+</div></a></article><article class="col"> <a href="/posts/git/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1741014000" data-df="YYYY/MM/DD"> 2025/03/04 </time><h4 class="pt-0 my-2">[Github] Git... 관련된 것 / commit 작성법법 / vscode에서 사용 안됨 / GitHub release?...</h4>
+<div class="text-muted"><p>vscode에서 사용 /commit 작성법/ vscode 안됨</p></div>
+</div></a></article></nav></aside><nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation"><div class="btn btn-outline-primary disabled" aria-label="이전 글"><p>-</p></div>
+<a href="/posts/zotero7settings/" class="btn btn-outline-primary" aria-label="다음 글"><p>[Zotero] 조테로 7 사용법(zotero+Google Drive+Notion 연동)</p></a></nav><footer aria-label="Site Info" class=" d-flex flex-column justify-content-center text-muted flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3 "><p>© <time>2025</time> <a href="https://github.com/go00ood" target="_blank" rel="noopener noreferrer">go00ood</a>. This work is licensed under <span data-bs-toggle="tooltip" data-bs-placement="top" title="이 콘텐츠는 비상업적(CC BY-NC 4.0) 라이선스 하에 제공되며, 출처를 명확히 표기해야 합니다."> <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer noopener noreferrer"> CC BY-NC 4.0 </a> </span>.</p>
+<p>Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener noopener noreferrer">Jekyll</a> with <a data-bs-toggle="tooltip" data-bs-placement="top" title="v7.2.4" href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener noopener noreferrer">Chirpy</a> theme</p></footer>
+</div></div>
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none"><div class="col-11 content">
+<div id="search-hints"></div>
+<div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+</div></div>
+</div>
+<aside aria-label="Scroll to Top"> <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow"> <i class="fas fa-angle-up"></i> </button></aside>
+</div><div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div><aside id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true" data-bs-autohide="false"><div class="toast-header"> <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>
+<div class="toast-body text-center pt-0">
+<p class="px-2 mb-3">새 버전의 콘텐츠를 사용할 수 있습니다.</p>
+<button type="button" class="btn btn-primary" aria-label="Update"> 업데이트 </button>
+</div></aside><script> document.addEventListener('DOMContentLoaded', () => { SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<article class="px-1 px-sm-2 px-lg-4 px-xl-0"><header><h2><a href="{url}">{title}</a></h2><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div></header><p>{content}</p></article>', noResultsText: '<p class="mt-5">검색 결과가 없습니다.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); }); </script> <script src="/assets/hanja-annotator.js" defer></script>
