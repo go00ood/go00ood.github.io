@@ -120,6 +120,8 @@ document.getElementById("toggle-dok").addEventListener("click", () => {
   resize: none;
   box-sizing: border-box;
   line-height: 1.5;
+  font-family: inherit; 
+
 }
 
 /* 출력 전체 래퍼 */
