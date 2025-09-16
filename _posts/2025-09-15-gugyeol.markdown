@@ -20,18 +20,18 @@ categories: 구결 구결자보조
 <div id="dok-container" style="display:none; margin-top:0.6em;">
   <div class="dok-grid">
     <div> ㄱ</div><div> 거</div><div> 겨</div><div> 고</div><div> 곰</div>
-    <div> 과</div><div> 근</div><div> 긔</div><div> ᄀᆞᆮ</div><div> ᄀᆞᆺ</div>
-    <div> 나</div><div> 노</div><div> 누</div><div> 니</div><div> ᄂᆞ</div>
-    <div> 은</div><div> 다</div><div> 다</div><div> 디</div><div> 뎌</div>
+    <div> 과</div><div> 근</div><div> 긔</div><div> ᄀᆞᆫ</div><div> ᄀᆞᆮ</div>
+    <div> ᄀᆞᆺ</div><div> 나</div><div> 노</div><div> 누</div><div> 니</div>
+    <div> ᄂᆞ</div><div> 은</div><div> 다</div><div> 다</div><div> 뎌</div>
     <div> 도</div><div> 두</div><div> 디</div><div> ᄃᆞ</div><div> ᄃᆞᆯ</div>
-    <div> ᄃᆡ</div><div> ᄒᆡ</div><div> 라</div><div> 로</div><div> 리</div>
-    <div> 리</div><div> 을</div><div> 을</div><div> 마</div><div> 며</div>
-    <div> 모</div><div> 믈</div><div> ㅁ</div><div> ᄇᆞᆺ</div><div> ㅂ</div>
-    <div> 사</div><div> 셔</div><div> 시</div><div> 시</div><div> ᄉᆞᆸ</div>
-    <div> ㅅ</div><div> 아</div><div> 여</div><div> 여</div><div> 오</div>
-    <div> 우</div><div> 의</div><div> 이</div><div> 이</div><div> 져</div>
-    <div> 지</div><div> 텨</div><div> 하</div><div> 호</div><div> 호</div>
-    <div> 히</div><div> ᄒᆞ</div><div> ᄒᆞᆫ</div>
+    <div> ᄃᆡ</div><div> 라</div><div> 로</div><div> 리</div><div> 리</div>
+    <div> 을</div><div> 을</div><div> 마</div><div> 며</div><div> 모</div>
+    <div> 믈</div><div> ㅁ</div><div> ᄇᆞᆺ</div><div> ㅂ</div><div> 사</div>
+    <div> 셔</div><div> 시</div><div> 시</div><div> ᄉᆞᆸ</div><div> ㅅ</div>
+    <div> 아</div><div> 여</div><div> 여</div><div> 오</div><div> 우</div>
+    <div> 의</div><div> 이</div><div> 이</div><div> 져</div><div> 지</div>
+    <div> 텨</div><div> 하</div><div> 호</div><div> 호</div><div> 히</div>
+    <div> 히</div><div> ᄒᆞ</div><div> ᄒᆡ</div>
   </div>
 </div>
 
@@ -199,7 +199,7 @@ function resize(textarea) {
 
 (async function () {
   const res = await fetch("{{ '/assets/data/gugyeol_dok.json' | relative_url }}");
-  const gukyolData = await res.json();
+  const gugyeolData = await res.json();
 
   const input = document.getElementById('input-text');
   const preview = document.getElementById('preview');
@@ -210,7 +210,7 @@ function resize(textarea) {
 
     if (query.length === 0) return;
 
-    const results = gukyolData.filter(item => item.dok.includes(query));
+    const results = gugyeolData.filter(item => item.dok.includes(query));
 
     if (results.length === 0) {
       preview.innerHTML = "<p>결과 없음</p>";
@@ -222,8 +222,8 @@ function resize(textarea) {
       const id = "copymsg-" + idx;
       html += `
         <li>
-          ${r.gukyol} (${r.dok})
-          <button class="copy-btn" onclick="copyToClipboard('${r.gukyol}', '${id}')">📋</button>
+          ${r.gugyeol} (${r.dok})
+          <button class="copy-btn" onclick="copyToClipboard('${r.gugyeol}', '${id}')">📋</button>
           <span id="${id}" class="copied-msg">✔ 복사됨</span>
         </li>`;
     });
