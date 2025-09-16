@@ -9,6 +9,7 @@ categories: 구결 구결자보조
 # 📝 구결자 입력기
 <ul class="notice-list">
   <li>장경준(2022), 석독구결 입력 파일(sktot_2022_09 배포본)을 활용하여 만든 자료입니다.</li>
+  <li>📋를 누르면 해당 구결자가 복사됩니다.</li>
   <li>
     입력 편의를 위해 아래의 대표음을 사용합니다.
     <div class="toggle-wrapper">
