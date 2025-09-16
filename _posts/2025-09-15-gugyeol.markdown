@@ -7,7 +7,90 @@ categories: 구결 구결자보조
 ---
 
 # 📝 구결자 입력기
+<ul class="notice-list">
+  <li>장경준(2022), 석독구결 입력 파일(sktot_2022_09 배포본)을 활용하여 만든 자료입니다.</li>
+  <li>
+    입력 편의를 위해 아래의 대표음을 사용합니다.
+    <div class="toggle-wrapper">
+      <button id="toggle-dok" class="toggle-btn">대표 독음표 펼치기</button>
+    </div>
+  </li>
+</ul>
 
+<div id="dok-container" style="display:none; margin-top:0.6em;">
+  <div class="dok-grid">
+    <div> ㄱ</div><div> 거</div><div> 겨</div><div> 고</div><div> 곰</div>
+    <div> 과</div><div> 근</div><div> 긔</div><div> ᄀᆞᆮ</div><div> ᄀᆞᆺ</div>
+    <div> 나</div><div> 노</div><div> 누</div><div> 니</div><div> ᄂᆞ</div>
+    <div> 은</div><div> 다</div><div> 다</div><div> 디</div><div> 뎌</div>
+    <div> 도</div><div> 두</div><div> 디</div><div> ᄃᆞ</div><div> ᄃᆞᆯ</div>
+    <div> ᄃᆡ</div><div> ᄒᆡ</div><div> 라</div><div> 로</div><div> 리</div>
+    <div> 리</div><div> 을</div><div> 을</div><div> 마</div><div> 며</div>
+    <div> 모</div><div> 믈</div><div> ㅁ</div><div> ᄇᆞᆺ</div><div> ㅂ</div>
+    <div> 사</div><div> 셔</div><div> 시</div><div> 시</div><div> ᄉᆞᆸ</div>
+    <div> ㅅ</div><div> 아</div><div> 여</div><div> 여</div><div> 오</div>
+    <div> 우</div><div> 의</div><div> 이</div><div> 이</div><div> 져</div>
+    <div> 지</div><div> 텨</div><div> 하</div><div> 호</div><div> 호</div>
+    <div> 히</div><div> ᄒᆞ</div><div> ᄒᆞᆫ</div>
+  </div>
+</div>
+
+<style>
+.toggle-wrapper {
+  margin-top: 0.5em;   /* 안내문과 버튼 사이 */
+  margin-bottom: 2em; /* 버튼/토글과 검색창 사이 */
+}
+
+.dok-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px 12px;
+  max-width: 700px;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+  margin-left: 1em;    /* 들여쓰기 */
+
+}
+.dok-grid div {
+  padding: 2px 4px;
+}
+.toggle-btn {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85em;
+  padding: 6px 12px;
+  margin-left: 0.5em;   /* ← 약간 안쪽으로 */
+  margin-top: 0.3em;    /* 위아래 간격 살짝 */
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.toggle-btn:hover {
+  background: #eee;
+  transform: translateY(-1px); /* 살짝 뜨는 느낌 */
+}
+
+.toggle-btn:active {
+  transform: translateY(0); /* 눌림 효과 */
+}
+</style>
+
+<script>
+document.getElementById("toggle-dok").addEventListener("click", () => {
+  const container = document.getElementById("dok-container");
+  const btn = document.getElementById("toggle-dok");
+  if (container.style.display === "none") {
+    container.style.display = "block";
+    btn.innerText = "대표 독음표 접기";
+  } else {
+    container.style.display = "none";
+    btn.innerText = "대표 독음표 펼치기";
+  }
+});
+</script>
+
+## 💀 입력창 
 
 <!-- 입력창 -->
 <textarea id="input-text" placeholder="독음을 입력하세요 (예: ᄒᆞ)" oninput="resize(this)"></textarea>
@@ -22,39 +105,6 @@ categories: 구결 구결자보조
   <div id="preview"></div>
 </div>
 
-<p style="margin-top:0.6em; font-size:0.95rem; color:gray;">
-입력 편의를 위해 아래의 대표음을 사용합니다.
-</p>
-
-<div class="dok-grid">
-  <div> ㄱ</div><div> 거</div><div> 겨</div><div> 고</div><div> 곰</div>
-  <div> 과</div><div> 근</div><div> 긔</div><div> ᄀᆞᆮ</div><div> ᄀᆞᆺ</div>
-  <div> 나</div><div> 노</div><div> 누</div><div> 니</div><div> ᄂᆞ</div>
-  <div> 은</div><div> 다</div><div> 다</div><div> 디</div><div> 뎌</div>
-  <div> 도</div><div> 두</div><div> 디</div><div> ᄃᆞ</div><div> ᄃᆞᆯ</div>
-  <div> ᄃᆡ</div><div> ᄒᆡ</div><div> 라</div><div> 로</div><div> 리</div>
-  <div> 리</div><div> 을</div><div> 을</div><div> 마</div><div> 며</div>
-  <div> 모</div><div> 믈</div><div> ㅁ</div><div> ᄇᆞᆺ</div><div> ㅂ</div>
-  <div> 사</div><div> 셔</div><div> 시</div><div> 시</div><div> ᄉᆞᆸ</div>
-  <div> ㅅ</div><div> 아</div><div> 여</div><div> 여</div><div> 오</div>
-  <div> 우</div><div> 의</div><div> 이</div><div> 이</div><div> 져</div>
-  <div> 지</div><div> 텨</div><div> 하</div><div> 호</div><div> 호</div>
-  <div> 히</div><div> ᄒᆞ</div><div> ᄒᆞᆫ</div>
-</div>
-
-<style>
-.dok-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 6px 12px;
-  max-width: 700px;
-  margin-bottom: 1em;
-  font-size: 0.95rem;
-}
-.dok-grid div {
-  padding: 2px 4px;
-}
-</style>
 
 
 <style>
@@ -65,10 +115,8 @@ categories: 구결 구결자보조
   min-height: 2.5em;
   padding: 12px 14px;
   font-size: 1rem;
-  border: 1px solid white;
+  border: ２px solid;         
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.07);
-  color: inherit;
   resize: none;
   box-sizing: border-box;
   line-height: 1.5;
@@ -81,7 +129,7 @@ categories: 구결 구결자보조
   border-radius: 8px;
   overflow: visible;
   position: relative;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 4px;     
 }
 
 /* 제목줄 */
@@ -89,11 +137,9 @@ categories: 구결 구결자보조
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.08);
   padding: 10px 14px;
   font-weight: bold;
   font-size: 1rem;
-  color: inherit;
   position: relative;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -101,10 +147,8 @@ categories: 구결 구결자보조
 
 /* 출력 박스 */
 #preview {
-  background-color: rgba(255, 255, 255, 0.05);
   padding: 14px 16px;
   font-size: 1.05rem;
-  color: inherit;
   line-height: 1.6;
   box-sizing: border-box;
   border-bottom-left-radius: 8px;
@@ -115,7 +159,6 @@ categories: 구결 구결자보조
 .copy-btn {
   background: none;
   border: none;
-  color: #bbb;
   font-size: 0.9rem;
   cursor: pointer;
   padding: 2px 6px;
@@ -125,43 +168,25 @@ categories: 구결 구결자보조
 }
 
 .copy-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  /* hover 효과는 유지 (배경 강조 X, 색 지정 제거) */
 }
 
 /* 복사됨 메시지 */
 .copied-msg {
   font-size: 0.8em;
-  color: #4caf50;
   margin-left: 6px;
   display: none;
 }
 
 /* 다크모드 대응 */
 @media (prefers-color-scheme: dark) {
-  #input-text {
-    background-color: rgba(30, 30, 30, 0.4);
-    color: #eee;
-  }
-
-  .output-header {
-    background-color: rgba(255, 255, 255, 0.08);
-    color: #eee;
-  }
-
-  #preview {
-    background-color: rgba(255, 255, 255, 0.04);
-    color: #eee;
-  }
-
-  .copy-btn {
-    color: #aaa;
-  }
-
-  .copy-btn:hover {
-    color: #fff;
-  }
+  #input-text { }
+  .output-header { }
+  #preview { }
+  .copy-btn { }
+  .copy-btn:hover { }
 }
+
 </style>
 
 <script>
