@@ -1,0 +1,87 @@
+---
+layout: default
+---
+
+<article class="post h-entry">
+  <header class="post-header">
+    <h1 class="post-title p-name">{{ page.title }}</h1>
+    {% if page.date %}
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%Y-%m-%d" }}
+      </time>
+    </p>
+    {% endif %}
+  </header>
+
+  <div id="encrypted_content">
+    <form id="encrypt_form" action="#" method="post">
+      <p>🔒 이 게시물은 비밀번호로 보호되어 있습니다. 비밀번호를 입력하세요.</p>
+      <input id="encrypt_password"
+             type="password"
+             name="password"
+             placeholder="비밀번호 입력"
+             autofocus />
+      <input type="submit" value="Unlock"/>
+      <p id="encrypt_error" style="color: red; display: none; margin-top: 0.5em;">
+        비밀번호가 틀렸습니다. 다시 시도해주세요.
+      </p>
+    </form>
+  </div>
+</article>
+
+<!-- 라이브러리 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.10/marked.min.js"></script>
+
+<script>
+  document.getElementById('encrypt_form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var passphrase = document.getElementById('encrypt_password').value;
+    var encryptedMsg = '{{ page.encrypted | default: "" }}';
+
+    console.log("🔑 입력한 비밀번호:", passphrase);
+    console.log("🔒 암호화된 메시지:", encryptedMsg.slice(0, 80) + "...");
+
+    if (!encryptedMsg) {
+      document.getElementById('encrypted_content').innerHTML =
+        "<p style='color:red;'>⚠️ 암호화된 본문이 없습니다.</p>";
+      return;
+    }
+
+    var encryptedHMAC = encryptedMsg.substring(0, 64),
+        encryptedHTML = encryptedMsg.substring(64),
+        aesKey = CryptoJS.SHA256(passphrase).toString(),
+        decryptedHMAC = CryptoJS.HmacSHA256(encryptedHTML, aesKey).toString();
+
+    console.log("🔑 생성된 AES Key:", aesKey);
+    console.log("📏 HMAC 비교 →", decryptedHMAC === encryptedHMAC);
+
+    if (decryptedHMAC !== encryptedHMAC) {
+      console.log("❌ HMAC 불일치");
+      document.getElementById('encrypt_error').style.display = 'block';
+      return;
+    }
+
+    var plainText = CryptoJS.AES.decrypt(encryptedHTML, aesKey).toString(CryptoJS.enc.Utf8);
+
+    console.log("📜 복호화 결과:", plainText ? plainText.slice(0, 100) : "(빈 문자열)");
+
+    if (!plainText) {
+      document.getElementById('encrypt_error').style.display = 'block';
+      return;
+    }
+
+    // 🔧 Markdown 변환 시도
+    try {
+      var rendered = marked.parse(plainText);
+      console.log("✅ marked 변환 성공");
+      document.getElementById('encrypted_content').innerHTML = rendered;
+    } catch (err) {
+      console.error("❌ marked 변환 실패:", err);
+      // fallback: plain text 출력
+      document.getElementById('encrypted_content').innerHTML = "<pre>" + plainText + "</pre>";
+    }
+  });
+</script>
