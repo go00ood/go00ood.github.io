@@ -15,19 +15,18 @@ layout: default
   </header>
 
   <div id="encrypted_content">
-    <form id="encrypt_form" action="javascript:void(0);">
-
-      <p>🔒 이 게시물은 비밀번호로 보호되어 있습니다. 비밀번호를 입력하세요.</p>
-      <input id="encrypt_password"
-             type="password"
-             name="password"
-             placeholder="비밀번호 입력"
-             autofocus />
-      <input type="submit" value="Unlock"/>
-      <p id="encrypt_error" style="color: red; display: none; margin-top: 0.5em;">
-        비밀번호가 틀렸습니다. 다시 시도해주세요.
-      </p>
-    </form>
+  <form id="encrypt_form" method="post">
+    <p>🔒 이 게시물은 비밀번호로 보호되어 있습니다. 비밀번호를 입력하세요.</p>
+    <input id="encrypt_password"
+          type="password"
+          name="password"
+          placeholder="비밀번호 입력"
+          autofocus />
+    <input type="submit" value="Unlock"/>
+    <p id="encrypt_error" style="color: red; display: none; margin-top: 0.5em;">
+      비밀번호가 틀렸습니다. 다시 시도해주세요.
+    </p>
+  </form>
   </div>
 </article>
 
