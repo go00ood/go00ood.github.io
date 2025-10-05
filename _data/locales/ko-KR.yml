@@ -6,7 +6,8 @@ layout:
   post: 포스트
   category: 카테고리
   tag: 태그
-
+  encrypted: 비밀글
+  
 # The tabs of sidebar
 tabs:
   # format: <filename_without_extension>: <value>
