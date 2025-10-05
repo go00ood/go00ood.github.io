@@ -1,30 +1,32 @@
---- 
-layout: default 
+---
+layout: default
 ---
 
 <article class="post h-entry">
   <header class="post-header">
     <h1 class="post-title p-name">{{ page.title }}</h1>
     {% if page.date %}
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">
-        {{ page.date | date: "%Y-%m-%d" }}
-      </time>
-    </p>
+      <p class="post-meta">
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%Y-%m-%d" }}
+        </time>
+      </p>
     {% endif %}
   </header>
 
   <div id="encrypted_content">
     <form id="encrypt_form" action="javascript:void(0);">
       <p>🔒 이 게시물은 비밀번호로 보호되어 있습니다. 비밀번호를 입력하세요.</p>
-      <input id="encrypt_password"
-             type="password"
-             name="password"
-             placeholder="비밀번호 입력"
-             autofocus
-             autocomplete="new-password" />
-      <input type="submit" value="Unlock"/>
-      <p id="encrypt_error" style="color: red; display: none; margin-top: 0.5em;">
+      <input
+        id="encrypt_password"
+        type="password"
+        name="password"
+        placeholder="비밀번호 입력"
+        autofocus
+        autocomplete="new-password"
+      />
+      <input type="submit" value="Unlock" />
+      <p id="encrypt_error" style="color:red; display:none; margin-top:0.5em;">
         비밀번호가 틀렸습니다. 다시 시도해주세요.
       </p>
     </form>
@@ -36,14 +38,15 @@ layout: default
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
-  document.getElementById('encrypt_form').addEventListener('submit', function(e) {
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById('encrypt_form');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    var passphrase = document.getElementById('encrypt_password').value;
-    var encryptedMsg = {{ page.encrypted | jsonify }}; // 👉 JSON-safe 문자열 (따옴표 자동 포함)
-
-    console.log("🔑 입력한 비밀번호:", passphrase);
-    console.log("🔒 암호화된 메시지 앞부분:", encryptedMsg.slice(0, 80) + "...");
+    const passphrase = document.getElementById('encrypt_password').value;
+    const encryptedMsg = {{ page.encrypted | jsonify }};
 
     if (!encryptedMsg) {
       document.getElementById('encrypted_content').innerHTML =
@@ -51,28 +54,28 @@ layout: default
       return;
     }
 
-    var encryptedHMAC = encryptedMsg.substring(0, 64),
-        encryptedHTML = encryptedMsg.substring(64),
-        aesKey = CryptoJS.SHA256(passphrase).toString(),
-        decryptedHMAC = CryptoJS.HmacSHA256(encryptedHTML, aesKey).toString();
+    const encryptedHMAC = encryptedMsg.substring(0, 64);
+    const encryptedHTML = encryptedMsg.substring(64);
+    const aesKey = CryptoJS.SHA256(passphrase).toString();
+    const decryptedHMAC = CryptoJS.HmacSHA256(encryptedHTML, aesKey).toString();
 
     if (decryptedHMAC !== encryptedHMAC) {
       document.getElementById('encrypt_error').style.display = 'block';
       return;
     }
 
-    var plainText = CryptoJS.AES.decrypt(encryptedHTML, aesKey).toString(CryptoJS.enc.Utf8);
-
+    const plainText = CryptoJS.AES.decrypt(encryptedHTML, aesKey).toString(CryptoJS.enc.Utf8);
     if (!plainText) {
       document.getElementById('encrypt_error').style.display = 'block';
       return;
     }
 
     try {
-      var rendered = marked.parse(plainText);
+      const rendered = marked.parse(plainText);
       document.getElementById('encrypted_content').innerHTML = rendered;
     } catch (err) {
       document.getElementById('encrypted_content').innerHTML = "<pre>" + plainText + "</pre>";
     }
   });
+});
 </script>
