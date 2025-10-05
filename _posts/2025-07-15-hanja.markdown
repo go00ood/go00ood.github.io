@@ -26,65 +26,29 @@ categories: 구결 구결자보조
 </div>
 
 <style>
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #fff;
-    color: #111;
-  }
-
-  #input-text {
-    background-color: #acacacff;
-    color: #111;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 4px rgba(0,0,0,0.25); /* 약간의 윤곽 */
-  }
-
-  .output-wrapper {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06); /* 카드 느낌 */
-  }
-
-  .output-header {
-    background-color: #f3f3f3;
-    color: #222;
-    border-bottom: 1px solid #ddd;
-  }
-
-  #preview {
-    background-color: #fafafa;
-    color: #111;
-  }
-
-  .copy-btn {
-    color: #666;
-  }
-
-  .copy-btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: #000;
-  }
-
-  .copy-btn .tooltip {
-    background-color: #333;
-    color: #fff;
-  }
-}
-
-/* 입력창 */
+/* ✅ 전체 색상 체계는 블로그의 테마 변수 기반 */
 #input-text {
   width: 100%;
   max-width: 700px;
-  min-height: 2.5em;
+  min-height: 2.8em;
   padding: 12px 14px;
   font-size: 1rem;
-  border: 1px solid white;
+  border: 1px solid var(--border-color, #ddd);
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.07);
-  color: inherit;
   resize: none;
   box-sizing: border-box;
   line-height: 1.5;
+  font-family: inherit;
+  background-color: var(--card-bg, #f9f9f9);
+  color: var(--text-color, #111);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* 포커스 시 강조 */
+#input-text:focus {
+  outline: none;
+  border-color: var(--accent-color, #5a8dee);
+  box-shadow: 0 0 0 2px rgba(90, 141, 238, 0.2);
 }
 
 /* 출력 전체 래퍼 */
@@ -92,10 +56,12 @@ categories: 구결 구결자보조
   max-width: 700px;
   margin-top: 1.2em;
   border-radius: 8px;
-  overflow: visible; /* ← 수정 */
-  position: relative; /* ← 추가 */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-
+  overflow: visible;
+  position: relative;
+  border: 1px solid var(--border-color, #ddd);
+  background-color: var(--card-bg, #fff);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 /* 제목줄 */
@@ -103,45 +69,42 @@ categories: 구결 구결자보조
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.08);
   padding: 10px 14px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
-  color: inherit;
-  position: relative;
+  color: var(--text-color, #111);
+  border-bottom: 1px solid var(--border-color, #ddd);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-
 }
 
 /* 출력 박스 */
 #preview {
-  background-color: rgba(255, 255, 255, 0.05);
   padding: 14px 16px;
   font-size: 1.05rem;
   white-space: pre-wrap;
-  color: inherit;
   line-height: 1.6;
-  box-sizing: border-box;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  color: var(--text-color, #111);
 }
 
 /* 복사 버튼 */
 .copy-btn {
   background: none;
   border: none;
-  color: #bbb;
+  color: var(--text-muted, #888);
   font-size: 1rem;
   cursor: pointer;
   padding: 4px 6px;
   border-radius: 6px;
   position: relative;
+  transition: color 0.2s, background 0.2s;
 }
 
 .copy-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--text-color, #000);
 }
 
 /* 툴팁 */
@@ -151,7 +114,7 @@ categories: 구결 구결자보조
   position: absolute;
   top: -28px;
   right: 0;
-  background: #111;
+  background: var(--tooltip-bg, #333);
   color: #fff;
   padding: 4px 8px;
   font-size: 0.75rem;
@@ -168,41 +131,44 @@ categories: 구결 구결자보조
 /* 병기 스타일 */
 small.hanja {
   font-size: 0.85em;
-  color: #f98ca2;
+  color: #e6758b;
   margin-left: 4px;
 }
 small.gugyeol {
   font-size: 0.85em;
-  color: #8cc9ff;
+  color: #73b7ff;
   margin-left: 4px;
 }
 
-/* 다크모드 대응 */
-@media (prefers-color-scheme: dark) {
-  #input-text {
-    background-color: rgba(30, 30, 30, 0.4);
-    color: #eee;
-  }
+/* ✅ 다크모드 대응 */
+[data-theme="dark"] .output-header {
+  background-color: #2a2a2a;   /* 🔹 기존보다 어두운 회색으로 변경 */
+  color: #ddd;                 /* 텍스트는 밝게 유지 */
+  border-bottom-color: #333;   /* 아래 테두리 살짝 어둡게 */
+}
 
-  .output-header {
-    background-color: rgba(255, 255, 255, 0.08);
-    color: #eee;
-  }
+[data-theme="dark"] .output-wrapper {
+  background-color: #1b1b1b;
+  border-color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
 
-  #preview {
-    background-color: rgba(255, 255, 255, 0.04);
-    color: #eee;
-  }
+[data-theme="dark"] .output-header {
+  background-color: #222;
+  color: #ddd;
+  border-bottom-color: #333;
+}
 
-  .copy-btn {
-    color: #aaa;
-  }
+[data-theme="dark"] #preview {
+  color: #e6e6e6;
+}
 
-  .copy-btn:hover {
-    color: #fff;
-  }
+[data-theme="dark"] .copy-btn:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: #fff;
 }
 </style>
+
 
 <script>
 function resize(textarea) {
