@@ -1,4 +1,16 @@
 {
+  
+
+    // 1. 이미지 저장 폴더 설정: (예: assets/images/MyDocument)
+    "pasteImage.path": "${projectRoot}/assets/images/${currentFileNameWithoutExt}",
+    
+    // 2. 경로 앞에 붙을 웹 경로 시작 슬래시(/) 지정
+    "pasteImage.prefix": "/",
+    
+    // 3. 삽입 패턴은 확장 기능이 계산한 전체 경로 변수만 사용
+    "pasteImage.insertPattern": "![${imageFileName}](${imageFilePath})",
+
+    
   // Prettier
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
