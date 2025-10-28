@@ -2,5 +2,5 @@
 title: "비밀글 테스트"
 date: 2025-10-05
 layout: encrypted
-encrypted: 72b62b43ca71f307638cbeccf2cc6339c5f816c24cde15caac00242856b51507U2FsdGVkX1+tMJHil5KHYRDyKjRBRPYkO/fcWbwlE2vJy+FF6Tl7iywGfyHfRBAo
+encrypted: fdd599b2a5e0b3097ce19496d41345d569c9f756d5794f17b008266a568fd349U2FsdGVkX18hVKZCGuo8tMPAGpBun6/LfRtTHbfTxZYKbl6YQl4pJpBWzjidZ5Bm
 ---
