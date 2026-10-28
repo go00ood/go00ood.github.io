@@ -193,7 +193,7 @@ let globalCorpusData = [];
 
 (async function () {
   try {
-    const res = await fetch('/assets/data/parallel_corpus.xml');
+    const res = await fetch('/assets/data/sohak_parallel_corpus.xml');
     const xmlString = await res.text();
     parseAndRenderXML(xmlString);
   } catch (err) {
