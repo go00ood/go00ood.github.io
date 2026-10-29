@@ -44,10 +44,35 @@ jobs:
           ruby-version: 3.2.2 
           bundler-cache: true
 
+
+      # GitHub Actions에서 Git 기록을 정상적으로 읽는지 확인
+      - name: Diagnose Git dates
+        run: |
+          echo "=== Git history ==="
+          git rev-parse --is-shallow-repository
+          git log -1 --format="%cI" -- _posts/2025-03-02-githubblog.markdown
+
+          echo "=== Custom plugin ==="
+          ls -l _plugins/
+          grep -n "last_modified_at" _plugins/git_modified_date.rb
+
+      # 기존 Jekyll 빌드
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: "production"
+
+      # GitHub Actions에서 생성한 sitemap의 수정일 확인
+      - name: Check generated sitemap
+        run: |
+          echo "=== Old post ==="
+          grep -A 1 '/posts/githubblog/' _site/sitemap.xml
+
+          echo "=== Another old post ==="
+          grep -A 1 '/posts/sg_1/' _site/sitemap.xml
+
+          echo "=== Categories page ==="
+          grep -A 1 '/categories/' _site/sitemap.xml
 
       - name: Test site
         run: |

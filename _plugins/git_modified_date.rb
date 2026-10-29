@@ -43,3 +43,19 @@ end
 Jekyll::Hooks.register :site, :post_read do |site|
   GitModifiedDate.apply(site)
 end
+
+Jekyll::Hooks.register :pages, :post_init do |page|
+  require 'time'
+  require 'open3'
+
+  next unless page.path && File.file?(page.path)
+
+  git_date, status = Open3.capture2(
+    'git', 'log', '-1', '--format=%cI',
+    '--', page.path
+  )
+
+  if status.success? && !git_date.strip.empty?
+    page.data['last_modified_at'] = Time.iso8601(git_date.strip)
+  end
+end
