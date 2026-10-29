@@ -10,10 +10,11 @@ categories: 코퍼스 국어사
 <!-- 검색 및 조작 바 -->
 <div class="search-wrapper">
   <input type="text" id="corpus-search-input" placeholder="한자 키, 원문 또는 언해 구절 검색..." />
-  <button class="copy-all-btn" onclick="copyAllFormatted()">전체 검색 결과 복사</button>
+  <button class="copy-all-btn" id="corpus-copy-all" type="button">전체 검색 결과 복사</button>
 </div>
 
-<div id="corpus-page-info" role="status" aria-live="polite"></div>
+<div id="corpus-page-info" role="status" aria-live="polite">XML 자료를 불러오는 중입니다.</div>
+<div id="corpus-load-error" role="alert" hidden></div>
 <!-- 코퍼스 리스트 출력 영역 -->
 <div id="corpus-list"></div>
 <nav class="corpus-pagination" aria-label="코퍼스 페이지 이동">
@@ -26,6 +27,9 @@ categories: 코퍼스 국어사
 <div id="toast" class="toast">클립보드에 복사되었습니다!</div>
 
 <style>
+#corpus-load-error { white-space: pre-wrap; overflow-wrap: anywhere; padding: 14px; border: 1px solid #c57760; margin: 12px 0; }
+#corpus-load-error[hidden] { display: none; }
+
 #corpus-page-info { margin: 12px 0 18px; color: var(--text-muted, #888); font-size: .9rem; }
 .corpus-pagination { max-width: 800px; display: flex; justify-content: center; align-items: center; gap: 18px; margin: 24px 0; }
 .corpus-pagination button { padding: 8px 16px; font: inherit; cursor: pointer; border: 1px solid var(--border-color, #ddd); border-radius: 6px; background: var(--card-bg, #fff); color: var(--text-color, #111); }
@@ -246,8 +250,11 @@ categories: 코퍼스 국어사
 </style>
 
 <script>
+(function () {
+function initGugupCorpus() {
+if (!document.getElementById('corpus-list')) return;
 let globalCorpusData = [];
-let displayedCorpusData = []; // 현재 검색에 해당하는 전체 결과 (모든 페이지)
+let displayedCorpusData = []; /* 현재 검색에 해당하는 전체 결과 (모든 페이지) */
 let currentCorpusPage = 0;
 const corpusPageSize = 20;
 
@@ -261,20 +268,40 @@ function updateCorpusPagination() {
   document.getElementById('corpus-page-info').textContent = `전체 ${globalCorpusData.length}개 중 검색 결과 ${total}개${range}`;
 }
 
-(async function () {
-  try {
-    const res = await fetch('/assets/data/gugeupbang_parallel_corpus.xml');
-    const xmlString = await res.text();
-    parseAndRenderXML(xmlString);
-  } catch (err) {
-    console.error('Failed to load XML corpus:', err);
+async function loadCorpus() {
+  const urls = [
+    "{{ '/assets/data/gugeupbang_parallel_corpus.xml' | relative_url }}"
+  ];
+  const errors = [];
+  for (const url of urls) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const res = await fetch(url, { cache: 'no-cache', signal: controller.signal });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const xmlString = await res.text();
+      parseAndRenderXML(xmlString);
+      document.getElementById('corpus-load-error').hidden = true;
+      return;
+    } catch (err) {
+      errors.push(`${url}: ${err.name === 'AbortError' ? '15초 응답 시간 초과' : err.message}`);
+    } finally {
+      clearTimeout(timeout);
+    }
   }
-})();
+  document.getElementById('corpus-page-info').textContent = '자료를 불러오지 못했습니다.';
+  const box = document.getElementById('corpus-load-error');
+  box.hidden = false;
+  box.textContent = '확인한 XML 경로와 오류\n' + errors.join('\n') + '\n저장소의 assets/data에 XML이 있는지, GitHub Actions 배포가 성공했는지 확인해 주세요.';
+}
 
 function parseAndRenderXML(xmlString) {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+  if (xmlDoc.querySelector('parsererror')) throw new Error('XML 문법 오류 또는 XML이 아닌 응답입니다.');
+  if (!xmlDoc.documentElement || xmlDoc.documentElement.localName !== 'parallel_corpus') throw new Error('parallel_corpus 형식이 아닙니다.');
   const groups = xmlDoc.querySelectorAll("align_group");
+  if (!groups.length) throw new Error('align_group이 없는 XML입니다.');
 
   globalCorpusData = [];
 
@@ -311,6 +338,10 @@ function parseAndRenderXML(xmlString) {
   renderCorpus(globalCorpusData);
 }
 
+function escapeCorpusText(value) {
+  return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
+}
+
 function renderCorpus(dataList, resetPage = true) {
   displayedCorpusData = dataList;
   if (resetPage) currentCorpusPage = 0;
@@ -337,17 +368,17 @@ function renderCorpus(dataList, resetPage = true) {
         const volInfo = item.vol ? `권${item.vol}: ` : "";
         docHtml += `
           <div class="doc-item has-data">
-            <div class="doc-name">${docName}</div>
+            <div class="doc-name">${escapeCorpusText(docName)}</div>
             <div class="doc-content">
-              <div class="chi-block"><div class="chi-label">한문</div><div class="chi-text">${item.chi}</div></div>            
-              <div class="kor-block"><div class="kor-label">언해</div><span class="kor-text">${item.kor}</span><span class="meta">&lt;${docName} ${volInfo}${item.page}&gt;</span></div>
+              <div class="chi-block"><div class="chi-label">한문</div><div class="chi-text">${escapeCorpusText(item.chi)}</div></div>            
+              <div class="kor-block"><div class="kor-label">언해</div><span class="kor-text">${escapeCorpusText(item.kor)}</span><span class="meta">&lt;${escapeCorpusText(docName)} ${escapeCorpusText(volInfo)}${escapeCorpusText(item.page)}&gt;</span></div>
             </div>
           </div>
         `;
       } else {
         docHtml += `
           <div class="doc-item">
-            <div class="doc-name">${docName}</div>
+            <div class="doc-name">${escapeCorpusText(docName)}</div>
             <div class="doc-content" style="color: var(--text-muted, #888); font-size: 0.9rem;">[해당 구절 없음]</div>
           </div>
         `;
@@ -357,7 +388,7 @@ function renderCorpus(dataList, resetPage = true) {
     card.innerHTML = `
       <div class="group-header">
         <span class="key-hanja">그룹 #${group.id}</span>
-        <button class="group-copy-btn" onclick="copySingleGroup(${group.id})">복사</button>
+        <button class="group-copy-btn" data-copy-group="${group.id}" type="button">복사</button>
       </div>
       <details class="group-key-details">
         <summary>그룹 기준 한문 보기</summary>
@@ -366,6 +397,7 @@ function renderCorpus(dataList, resetPage = true) {
       ${docHtml}
     `;
     card.querySelector('.group-key-text').textContent = group.keyHanja;
+    card.querySelector('[data-copy-group]').addEventListener('click', () => copySingleGroup(group.id));
 
     listDiv.appendChild(card);
   });
@@ -442,4 +474,13 @@ document.getElementById('corpus-search-input').addEventListener('input', (e) => 
 
   renderCorpus(filtered);
 });
+document.getElementById('corpus-copy-all').addEventListener('click', copyAllFormatted);
+loadCorpus();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGugupCorpus, { once: true });
+} else {
+  initGugupCorpus();
+}
+})();
 </script>
