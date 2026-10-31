@@ -40,7 +40,12 @@ def check(destination, site_url):
     if expected + "/" not in urls:
         raise ValueError("Homepage is missing from sitemap")
     targets = {local_file(url) for url in urls}
-    posts = set((destination / "posts").glob("**/index.html"))
+    # The posts directory itself can contain a generated index/redirect page.
+    # Only nested directories represent posts under /posts/:title/.
+    posts = {
+        path for path in (destination / "posts").glob("**/index.html")
+        if path.parent != destination / "posts"
+    }
     if not posts:
         raise ValueError("No generated posts found")
     missing = posts - targets
