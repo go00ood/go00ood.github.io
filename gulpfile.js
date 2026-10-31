@@ -1,11 +1,9 @@
 'use strict';
 
 var gulp        = require('gulp');
-var gutil       = require('gulp-util');
 
 var cryptojs    = require('crypto-js');
-var through     = require('through2');
-var PluginError = gutil.PluginError;
+const { Transform } = require('node:stream');
 
 // 🔑 환경변수로 비밀번호 지정 (없으면 fallback)
 const PASSWORD = process.env.POST_PASSWORD || 'gg';
@@ -49,34 +47,29 @@ function enforceEncryptedLayout(frontMatter, filepath) {
   암호화 처리
 */
 function encrypt(password) {
-  return through.obj(function(file, encoding, callback) {
+  return new Transform({ objectMode: true, transform(file, encoding, callback) {
     if (file.isNull() || file.isDirectory()) {
       this.push(file);
       return callback();
     }
 
     if (file.isStream()) {
-      this.emit('error', new PluginError({
-        plugin: 'Encrypt',
-        message: 'Streams are not supported.'
-      }));
+      this.emit('error', new Error('Streams are not supported.'));
       return callback();
     }
 
     if (file.isBuffer()) {
       var delimiter = '---',
-          chunks = String(file.contents).split(delimiter),
-          originalBody = chunks[0],
-          frontMatter = '';
+          source = String(file.contents),
+          match = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)([\s\S]*)$/),
+          originalBody = source,
+          frontMatter = 'layout: encrypted';
 
-      if (chunks.length === 3) {
-        frontMatter = enforceEncryptedLayout(chunks[1], file.path);
-        originalBody = chunks[2];
-      } else if (chunks.length > 1) {
-        this.emit('error', new PluginError({
-          plugin: 'Encrypt',
-          message: file.path + ': protected file has invalid front matter.'
-        }));
+      if (match) {
+        frontMatter = enforceEncryptedLayout(match[1], file.path);
+        originalBody = match[2];
+      } else if (/^---(?:\r?\n|$)/.test(source)) {
+        this.emit('error', new Error(file.path + ': protected file has invalid front matter.'));
         return callback();
       }
 
@@ -97,7 +90,7 @@ function encrypt(password) {
       this.push(file);
       return callback();
     }
-  });
+  }});
 }
 
 
@@ -111,7 +104,7 @@ gulp.task('firewall:encrypt', () => {
 });
 
 gulp.task('firewall:watch', () => {
-  gulp.watch('_protected/*.*', gulp.series('firewall:encrypt'));
+  gulp.watch('_posts/_protected/*.*', gulp.series('firewall:encrypt'));
 });
 
 gulp.task('firewall', gulp.series('firewall:encrypt', 'firewall:watch', () => {}));

@@ -45,13 +45,13 @@ Jekyll::Hooks.register :site, :post_read do |site|
 end
 
 Jekyll::Hooks.register :pages, :post_init do |page|
-  require 'time'
-  require 'open3'
+  next if page.data['last_modified_at']
 
-  next unless page.path && File.file?(page.path)
+  root = File.expand_path(page.site.source)
+  next unless page.path && File.file?(File.expand_path(page.path, root))
 
   git_date, status = Open3.capture2(
-    'git', 'log', '-1', '--format=%cI',
+    'git', '-C', root, 'log', '-1', '--format=%cI',
     '--', page.path
   )
 

@@ -46,13 +46,13 @@ jobs:
 
       # Node.js 설치 (npm 실행을 위해 필요)
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18' # 최신 버전 사용
+          node-version: '22' # 최신 버전 사용
 
       # 필수 패키지 설치
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # SCSS 및 JS 파일 빌드
       - name: Build assets
@@ -62,11 +62,17 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Generate corpus previews
+        run: python3 tools/build-corpus-previews.py
+
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+
+      - name: Validate deployment files
+        run: python3 tools/check-deployment.py --url "https://go00ood.github.io${{ steps.pages.outputs.base_path }}"
 
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default

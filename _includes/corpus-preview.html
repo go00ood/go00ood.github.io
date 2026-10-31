@@ -1,0 +1,27 @@
+{% assign corpus_preview = site.data.corpus_previews[page.url] %}
+{% if corpus_preview %}
+  <section aria-labelledby="corpus-preview-title" class="mt-5 pt-3 border-top">
+    <h2 id="corpus-preview-title">자료 미리보기</h2>
+    <p>뷰어에서 사용하는 XML 자료의 처음 두 대역 묶음입니다. JavaScript 없이도 읽을 수 있습니다.</p>
+    <p><a href="{{ corpus_preview.source | relative_url }}">미리보기 출처: 코퍼스 XML 원자료</a></p>
+    {% for group in corpus_preview.groups %}
+      <section class="mb-4" aria-label="대역 묶음 {{ forloop.index }}">
+        <h3>대역 묶음 {{ forloop.index }}</h3>
+        {% for document in group.documents %}
+          <h4>{{ document.name | escape }}{% if document.status == 'candidate' %} <small class="text-muted">(대응 후보)</small>{% endif %}</h4>
+          {% if document.sentences.size > 0 %}
+            {% for sentence in document.sentences %}
+              <p class="mb-1"><strong>{% if sentence.lang == 'chi' %}한문{% else %}언해{% endif %}</strong></p>
+              <blockquote>
+                <p>{{ sentence.text | escape }}</p>
+                <p class="small text-muted">출전: {{ document.name | escape }}{% if sentence.vol != empty %}, 권 {{ sentence.vol | escape }}{% endif %}{% if sentence.page != empty %}, {{ sentence.page | escape }}면{% endif %}{% if sentence.line != empty %}, 행 {{ sentence.line | escape }}{% endif %}</p>
+              </blockquote>
+            {% endfor %}
+          {% else %}
+            <p class="text-muted">이 묶음에는 수록된 본문이 없습니다.</p>
+          {% endif %}
+        {% endfor %}
+      </section>
+    {% endfor %}
+  </section>
+{% endif %}

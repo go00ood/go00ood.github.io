@@ -163,7 +163,6 @@ PLATFORMS
 
 DEPENDENCIES
   html-proofer (~> 5.0)
-  jekyll-sitemap
   jekyll-target-blank
   jekyll-theme-chirpy!
   tzinfo (>= 1, < 3)
