@@ -19,14 +19,14 @@
 #hanja-reader .hr-actions { display: flex; gap: .9rem; }
 #hanja-reader button { appearance: none; background: none; border: 0; padding: .2rem 0; color: var(--hr-muted); font: inherit; font-size: .82rem; cursor: pointer; box-shadow: none; border-radius: 0; }
 #hanja-reader button:hover { color: var(--hr-accent); }
-#hanja-reader #source { display: block; width: 100%; height: 110px; min-height: 110px; resize: vertical; padding: 1rem; border: 1px solid var(--hr-border); border-radius: 6px; background: var(--hr-bg); color: var(--hr-text); font: inherit; font-size: .9rem; line-height: 1.9; tab-size: 4; }
+#hanja-reader #source { display: block; width: 100%; height: 110px; min-height: 110px; resize: vertical; padding: 1rem; border: 1px solid var(--hr-border); border-radius: 6px; background: var(--hr-bg); color: var(--hr-text); font: inherit; font-size: 1rem; line-height: 1.9; tab-size: 4; }
 #hanja-reader #source::placeholder { color: var(--hr-muted); opacity: .8; }
 #hanja-reader #source:focus { outline: 2px solid var(--hr-accent); outline-offset: 2px; }
 #hanja-reader .hr-hint { margin: .5rem 0 0; color: var(--hr-muted); font-size: .78rem; line-height: 1.8; }
 #hanja-reader .hr-count { color: var(--hr-muted); font-size: .78rem; white-space: nowrap; }
 #hanja-reader .hr-output { min-height: 160px; border: 1px solid var(--hr-border); border-radius: 6px; background: var(--hr-bg); padding: 1rem; }
-#hanja-reader #reading { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: .9rem; line-height: 2; tab-size: 4; }
-#hanja-reader #empty { margin: 0; color: var(--hr-muted); font-size: .9rem; line-height: 2; }
+#hanja-reader #reading { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 1rem; line-height: 2; tab-size: 4; }
+#hanja-reader #empty { margin: 0; color: var(--hr-muted); font-size: 1rem; line-height: 2; }
 #hanja-reader .hr-hanja { border: 0; border-radius: 2px; color: var(--hr-accent); text-decoration: underline; text-decoration-color: var(--hr-accent); text-decoration-thickness: 1px; text-underline-offset: 4px; cursor: pointer; }
 #hanja-reader .hr-hanja:hover, #hanja-reader .hr-hanja:focus-visible, #hanja-reader .hr-hanja.active { background: var(--hr-surface); color: var(--hr-accent); outline: 1px solid var(--hr-accent); outline-offset: 2px; }
 #hanja-reader .hr-hanja.unknown { color: var(--hr-muted); text-decoration-style: dotted; cursor: pointer; }
