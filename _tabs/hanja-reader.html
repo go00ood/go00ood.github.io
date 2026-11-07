@@ -1,0 +1,14 @@
+---
+layout: page
+title: 한자 읽기
+description: 한자의 음과 뜻을 확인합니다.
+icon: fas fa-language
+order: 5
+permalink: /hanja-reader/
+toc: false
+---
+
+<link rel="stylesheet" href="{{ '/assets/hanja-reader/style.css' | relative_url }}">
+{% include hanja-reader.html %}
+<script src="{{ '/assets/hanja-reader/data.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/hanja-reader/app.js' | relative_url }}" defer></script>

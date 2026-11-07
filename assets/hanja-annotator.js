@@ -3,6 +3,8 @@
   const hanjaMap = await res.json();
 
   function annotate(node) {
+    // Preserve the interactive reader's original text and dictionary popups.
+    if (node.nodeType === 1 && node.hasAttribute('data-hanja-reader')) return;
     if (node.nodeType === 3) {
       const originalText = node.nodeValue;
       let text = originalText;
