@@ -9,8 +9,11 @@
   const reading = get('reading');
   const tooltip = get('tooltip');
   const status = get('status');
+  const touchLayout = window.matchMedia('(hover: none) and (pointer: coarse)');
+  let touchInput = false;
   let index = new Map();
   let active = null;
+  let pinned = false;
   let hideTimer;
   const han = /\p{Script=Han}/u;
   const variation = /[\uFE00-\uFE0F\u{E0100}-\u{E01EF}]/u;
@@ -43,11 +46,14 @@
     if (active) {
       active.classList.remove('active');
       active.removeAttribute('aria-describedby');
+      if (pinned) active.setAttribute('aria-expanded', 'false');
     }
     active = null;
+    pinned = false;
   }
 
   function scheduleClose() {
+    if (pinned) return;
     clearTimeout(hideTimer);
     hideTimer = setTimeout(closeTooltip, 140);
   }
@@ -63,29 +69,47 @@
     tooltip.style.top = top + 'px';
   }
 
-  function showTooltip(element, character, entries) {
+  function glosses(entries) {
+    return entries ? [...new Set(entries.map(entry => entry.pron))] : ['이 자료에 등록되지 않은 한자입니다.'];
+  }
+
+  function showTooltip(element, character, entries, interactive = false) {
     closeTooltip();
     active = element;
+    pinned = interactive;
     active.classList.add('active');
-    active.setAttribute('aria-describedby', 'tooltip');
+    tooltip.setAttribute('role', interactive ? 'group' : 'tooltip');
+    if (interactive) {
+      active.setAttribute('aria-controls', 'tooltip');
+      active.setAttribute('aria-expanded', 'true');
+      tooltip.setAttribute('aria-label', `${character} 풀이`);
+    } else {
+      active.setAttribute('aria-describedby', 'tooltip');
+      tooltip.removeAttribute('aria-label');
+    }
     tooltip.replaceChildren();
     const heading = document.createElement('div');
     heading.className = 'character';
     heading.textContent = character;
     tooltip.append(heading);
-    const prons = entries ? [...new Set(entries.map(e => e.pron))] : ['이 자료에 등록되지 않은 한자입니다.'];
-    for (const pron of prons) {
+    for (const pron of glosses(entries)) {
       const row = document.createElement('div');
       row.className = 'pron';
       row.textContent = pron;
       tooltip.append(row);
     }
-    const foot = document.createElement('div');
+    const foot = document.createElement(interactive ? 'a' : 'div');
     foot.className = 'tip-footer';
     foot.textContent = entries ? '클릭하여 자세히 보기 ↗' : '클릭하여 글자 검색 ↗';
+    if (interactive) {
+      foot.href = element.href;
+      foot.target = element.target;
+      foot.rel = element.rel;
+    }
     tooltip.append(foot);
     tooltip.hidden = false;
     positionTooltip();
+    if (interactive) foot.focus({preventScroll: true});
   }
 
   function render() {
@@ -112,26 +136,28 @@
         : 'https://hanja.dict.naver.com/#/search?query=' + encodeURIComponent(character);
       element.target = '_blank';
       element.rel = 'noopener noreferrer';
-      if (entries) {
-        element.setAttribute('aria-label', character + ', ' + [...new Set(entries.map(e => e.pron))].join(', ') + ', 네이버 한자사전 새 탭에서 열기');
-      } else {
-        element.setAttribute('aria-label', character + ', 자료에 없는 한자, 네이버 한자사전 검색 새 탭에서 열기');
-      }
-      element.addEventListener('pointerenter', () => showTooltip(element, character, entries));
-      element.addEventListener('pointerleave', scheduleClose);
-      element.addEventListener('focus', () => showTooltip(element, character, entries));
-      element.addEventListener('blur', closeTooltip);
-      // A long touch reveals the gloss; a normal tap follows the dictionary link.
-      let touchTimer;
-      let longTouch = false;
-      element.addEventListener('pointerdown', event => {
-        longTouch = false;
-        if (event.pointerType !== 'touch') return;
-        touchTimer = setTimeout(() => { longTouch = true; showTooltip(element, character, entries); }, 450);
+      const description = entries ? glosses(entries).join(', ') : '자료에 없는 한자';
+      const action = touchLayout.matches ? '풀이 열기' : '네이버 한자사전 새 탭에서 열기';
+      element.setAttribute('aria-label', `${character}, ${description}, ${action}`);
+      element.addEventListener('pointerenter', event => {
+        if (event.pointerType !== 'touch') showTooltip(element, character, entries);
       });
-      for (const eventName of ['pointerup', 'pointercancel', 'pointermove']) element.addEventListener(eventName, () => clearTimeout(touchTimer));
-      element.addEventListener('contextmenu', event => { if (longTouch) event.preventDefault(); });
-      element.addEventListener('click', event => { if (longTouch) { event.preventDefault(); longTouch = false; } });
+      element.addEventListener('pointerleave', scheduleClose);
+      element.addEventListener('focus', () => {
+        if (!pinned && !touchInput && !touchLayout.matches) showTooltip(element, character, entries);
+      });
+      element.addEventListener('blur', () => { if (!pinned) closeTooltip(); });
+      element.addEventListener('click', event => {
+        const fromTouch = event.pointerType === 'touch' || (!event.pointerType && event.detail > 0 && touchInput);
+        if (!fromTouch && !touchLayout.matches) return;
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        if (pinned && active === element) {
+          closeTooltip();
+          return;
+        }
+        showTooltip(element, element.textContent, entries, true);
+      });
       fragment.append(element);
       previous = element;
     }
@@ -153,10 +179,22 @@
   get('clear').addEventListener('click', () => { source.value = ''; render(); source.focus(); });
   tooltip.addEventListener('pointerenter', () => clearTimeout(hideTimer));
   tooltip.addEventListener('pointerleave', scheduleClose);
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeTooltip(); });
-  document.addEventListener('pointerdown', event => { if (!tooltip.contains(event.target) && !reading.contains(event.target)) closeTooltip(); });
+  root.addEventListener('pointerdown', event => { touchInput = event.pointerType === 'touch'; });
+  document.addEventListener('keydown', event => {
+    touchInput = false;
+    if (event.key === 'Escape') {
+      if (pinned && tooltip.contains(document.activeElement)) active.focus({preventScroll: true});
+      closeTooltip();
+    }
+  });
+  document.addEventListener('pointerdown', event => {
+    const anchor = pinned ? active : reading;
+    if (!tooltip.contains(event.target) && !anchor.contains(event.target)) closeTooltip();
+  });
   window.addEventListener('resize', positionTooltip);
-  window.addEventListener('scroll', closeTooltip, true);
+  window.addEventListener('scroll', event => {
+    if (!pinned || event.target !== tooltip) closeTooltip();
+  }, true);
   source.value = '';
   try { acceptDictionary(window.HANJA_DATA, 'naver-ext.json'); }
   catch { status.textContent = '기본 사전 자료를 읽지 못했습니다. data.js 파일이 있는지 확인해 주세요.'; render(); }

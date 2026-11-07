@@ -41,9 +41,21 @@
 #hanja-reader .hr-tooltip { position: fixed; z-index: 1050; width: max-content; max-width: min(320px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; padding: .85rem 1rem; border: 1px solid var(--hr-border); border-radius: 6px; background: var(--hr-bg); color: var(--hr-text); box-shadow: 0 4px 16px #00000012; font: inherit; font-size: .9rem; line-height: 1.8; }
 #hanja-reader .hr-tooltip .character { color: var(--heading-color, #2a2a2a); font-size: 1.5rem; margin-bottom: .25rem; }
 #hanja-reader .hr-tooltip .tip-footer { color: var(--hr-muted); font-size: .72rem; border-top: 1px solid var(--hr-border); margin-top: .6rem; padding-top: .5rem; }
+#hanja-reader .hr-tooltip a.tip-footer {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--hr-accent);
+  text-decoration: underline;
+}
+#hanja-reader .hr-touch-hint { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  #hanja-reader .hr-mouse-hint { display: none; }
+  #hanja-reader .hr-touch-hint { display: inline; }
+}
 @media (max-width: 575px) {
   #hanja-reader .hr-intro { font-size: .9rem; }
-  #hanja-reader #source { font-size: 1rem; }
-  #hanja-reader #reading { font-size: 1.2rem; }
+  #hanja-reader #source { font-size: .9rem; }
+  #hanja-reader #reading { font-size: .9rem; }
   #hanja-reader .hr-data { flex-direction: column; }
 }
