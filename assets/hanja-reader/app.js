@@ -4,7 +4,7 @@
   const root = document.getElementById('hanja-reader');
   if (!root) return;
   const get = id => root.querySelector('#' + id);
-  const sample = 'ᄒᆞᆫ 잔 수울 먹져(喫一盞酒)';
+  const sample = 'ᄒᆞᆫ 잔 수울 먹져(喫一盞酒) [번역노걸대상:64b]';
   const source = get('source');
   const reading = get('reading');
   const tooltip = get('tooltip');
